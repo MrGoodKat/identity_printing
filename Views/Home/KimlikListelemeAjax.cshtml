@@ -1,0 +1,81 @@
+﻿@model IEnumerable<kimlik.Models.KisiBilgileri>
+@using kimlik.Models
+
+@{
+    Layout = null;
+    
+    KimlikDbDataContext db = new KimlikDbDataContext();
+    
+}
+
+
+<table class="table table-striped" style="width: 100%; table-layout: fixed; text-align: center; margin-bottom: 16.5% !important;" id="tableData">
+    <tr>
+
+        <td colspan="2" style="text-align:left;">
+            <b>Kimlik Tasarımına Göre Listele : </b>
+        </td>
+        <td colspan="5" style="text-align:left;">
+            <select name="SelectedKimlik" id="SelectedKimlik">
+                <option value="0">Seçiniz</option>
+                @foreach (var item in db.KisiBilgileris.Where(x=>x.MusteriOnayId==Convert.ToInt32(Session["UserId"])).ToList())
+                {
+                    <option value="@item.KimlikTasarimId">@db.KmlikTasarims.Single(x => x.Id == item.KimlikTasarimId).KimlikBaslik</option>
+                }
+            </select>
+        </td>
+        
+        <td><b>AYARLAR</b></td>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.TCNo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Soyadi)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Adi)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DogumYeri)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Il)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Ilce)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Mahalle)
+            </td>
+
+            <td>
+                <a href="/Home/KimlikDuzenleme/@item.Id" class="btn btn-primary new-size-btn btn-sm">Düzenle</a>
+                <a href="/Home/PrintPage/@item.Id" class="btn btn-success new-size-btn btn-sm">Yazdır</a>
+            </td>
+        </tr>
+    }
+
+</table>
+
+
+<script type="text/javascript">
+    // assuming you're using jQuery
+    $("#SelectedKimlik").change(function (event) {
+        $.ajax({
+            url: "/Home/KimlikListelemeAjax/" + $(this).val() + "?q=" + Math.random() ,
+            data: { id: $(this).val() },
+            type: "POST"
+            //success: function (data) {
+            //    $("#tableData").html(data); // HTML DOM replace
+            //}
+        }).done(function (data) {
+            $("#tableData").html(data);
+        });;
+    });
+</script>

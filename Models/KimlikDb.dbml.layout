@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 18.875" name="KimlikDb">
+  <DataContextMoniker Name="/KimlikDbDataContext" />
+  <nestedChildShapes>
+    <classShape Id="7b3529ed-099a-46c7-81ca-8dd4a31ed96b" absoluteBounds="6.25, 1.125, 2, 5.4246240234375">
+      <DataClassMoniker Name="/KimlikDbDataContext/KisiBilgileri" />
+      <nestedChildShapes>
+        <elementListCompartment Id="9bcdbb7d-2044-4fa8-8ec2-fb87afd8ae94" absoluteBounds="6.265, 1.585, 1.9700000000000002, 4.8646240234375" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="ebc3c53f-f3aa-4cc4-81bc-9e21e6eb72cd" absoluteBounds="0.75, 5.75, 2, 1.3862939453125005">
+      <DataClassMoniker Name="/KimlikDbDataContext/MusteriOnayKimlikTasarim" />
+      <nestedChildShapes>
+        <elementListCompartment Id="7b87982a-8a4e-4a14-9c13-39d61282e89e" absoluteBounds="0.765, 6.21, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="ab88c416-27f6-4fe4-bd0b-dda313ccf4c1" absoluteBounds="0.75, 2.625, 2, 2.3478011067708335">
+      <DataClassMoniker Name="/KimlikDbDataContext/Musteri" />
+      <nestedChildShapes>
+        <elementListCompartment Id="71a2e815-9836-4984-aea0-83d3b18351cb" absoluteBounds="0.765, 3.085, 1.9700000000000002, 1.7878011067708335" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="8e87e649-492b-41ef-b39a-88b691c32a07" absoluteBounds="3.5, 2.875, 2, 1.9631982421874996">
+      <DataClassMoniker Name="/KimlikDbDataContext/MusteriOnay" />
+      <nestedChildShapes>
+        <elementListCompartment Id="27e8fc31-7858-4c9a-9bcc-5046d32e3d8b" absoluteBounds="3.515, 3.335, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(5.5 : 3.85659912109375); (6.25 : 3.85659912109375)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/KimlikDbDataContext/MusteriOnay/MusteriOnay_KisiBilgileri" />
+      <nodes>
+        <classShapeMoniker Id="8e87e649-492b-41ef-b39a-88b691c32a07" />
+        <classShapeMoniker Id="7b3529ed-099a-46c7-81ca-8dd4a31ed96b" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(2.75 : 3.85659912109375); (3.5 : 3.85659912109375)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/KimlikDbDataContext/Musteri/Musteri_MusteriOnay" />
+      <nodes>
+        <classShapeMoniker Id="ab88c416-27f6-4fe4-bd0b-dda313ccf4c1" />
+        <classShapeMoniker Id="8e87e649-492b-41ef-b39a-88b691c32a07" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="f5b7fec6-af96-4934-bfa0-2c947ff46303" absoluteBounds="4.125, 7, 2, 11.578269856770833">
+      <DataClassMoniker Name="/KimlikDbDataContext/KmlikTasarim" />
+      <nestedChildShapes>
+        <elementListCompartment Id="7405eddb-ebc7-448a-a89e-ac961cc72360" absoluteBounds="4.14, 7.46, 1.9700000000000002, 11.018269856770832" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>

@@ -1,0 +1,60 @@
+﻿@using kimlik.Models
+@{
+    ViewBag.Title = "KimlikTasarla";
+    KimlikDbDataContext db = new KimlikDbDataContext();
+    var result = db.MusteriOnays.Single(x => x.Id == Convert.ToInt32(Session["UserId"].ToString()));
+}
+
+@try
+{
+
+
+    if (!String.IsNullOrEmpty(result.CardDesignFilePath) && !String.IsNullOrWhiteSpace(result.CardDesignFilePath))
+    {
+        if (Request.Url.AbsoluteUri.Contains("local"))
+        {
+    <link href="@Url.Content("http://kimlik-yonetim.local.com/Uploads/" + result.CardDesignFilePath) " rel="stylesheet" />    
+        }
+        else
+        {
+    <link href="@Url.Content("http://kimlikyazdir-admin.technotechbilgisayar.com/Uploads/" + result.CardDesignFilePath) " rel="stylesheet" /> 
+    
+        }
+
+    }
+    else
+    {
+    <link href="/Content/NewCardSizeCSS.css" rel="stylesheet" />
+    }
+}
+catch (Exception)
+{
+    <link href="/Content/NewCardSizeCSS.css" rel="stylesheet" />
+}
+
+
+
+<link href="/Content/bootstrap-colorpicker.css" rel="stylesheet" />
+
+<script src="/Scripts/bootstrap.min.js"></script>
+<script src="/Scripts/bootstrap-colorpicker.js"></script>
+
+
+
+
+<h3 class="contact_section_title">KİMLİĞİMİ TASARLA</h3>
+
+
+
+<div class="row">
+    <div class="col-md-12">
+
+        @if (!String.IsNullOrEmpty(result.CardDesignFilePath) && !String.IsNullOrWhiteSpace(result.CardDesignFilePath))
+        {
+            Html.RenderPartial("_SpecialCardDesign");
+        }
+        else {
+            Html.RenderPartial("_NormalCardDesign");
+        }
+    </div>
+</div>

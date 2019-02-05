@@ -1,0 +1,51 @@
+﻿@model  IEnumerable<kimlik.Models.MusteriOnayKimlikTasarim>
+@using kimlik.Models
+@{
+    ViewBag.Title = "SelectTemplateFirst";
+    KimlikDbDataContext db=new KimlikDbDataContext();
+
+    
+    
+}
+
+@*try
+{*@
+    @if (!String.IsNullOrEmpty(Session["UserId"].ToString()))
+    {
+    <h3 class="contact_section_title">KİMLİK TASARIMI SEÇ</h3>
+
+    <div class="input-group clear-this-area">
+        
+        <select id="KimlikTasarimId" name="KimlikTasarimId" class="form-control" style="height: 45px;" onchange="location.href='/Home/MainPage/?id=' + this.value">
+            <option value="null">Seçiniz</option>
+            @foreach (var item in db.MusteriOnayKimlikTasarims.Where(x=>x.MusteriOnayId==Convert.ToInt32(Session["UserId"])).ToList())
+            {
+                try
+                {
+                    <option value="@item.KimlikTasarimId">@db.KmlikTasarims.Single(x=>x.Id==item.KimlikTasarimId).KimlikAdi.ToLower()</option>
+                }
+                catch (Exception)
+                {
+                    
+                }
+                
+            }
+        </select>
+
+    </div>
+    
+    }
+    else
+    {
+        Response.Redirect("/Home/Login");
+    }
+<!--//}
+//catch (Exception)
+//{
+//    Response.Redirect("/Home/Login");
+//}-->
+
+
+
+
+

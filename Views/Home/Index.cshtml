@@ -1,0 +1,378 @@
+﻿@{
+    
+    Layout = null;
+    ViewBag.Title = "Techno.Tech Bilgisayar - Kimlik Yazdır Web Yazılımı";
+
+}
+
+<link rel="stylesheet" href="/Content/bootstrap.css">
+<link rel="stylesheet" href="/Content/bootstrap-theme.min.css">
+<link rel="stylesheet" href="/Content/login_screen.css">
+<link href='http://fonts.googleapis.com/css?family=Roboto:400,900,300,400italic,300italic,700,500&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+
+
+<h3>Techno.Tech Bilgisayar - Kimlik Yazdır Web Yazılımı</h3>
+
+<div class="container-fluid">
+    
+    <div class="row">
+        <div class="col-md-12 more-padding-top">
+            <h4>Bu sistemin kullanılabilmesi için öncelikle üye olunup onay alınması gerekilmektedir.</h4>
+            <h5 class="btn-title">
+                <a href="/Home/Register" class="btn btn-danger  btn-lg new-style"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span> Üye Ol</a>
+                <a href="/Home/Login" class="btn btn-success btn-lg"><span class="glyphicon glyphicon-flash" aria-hidden="true"></span> Giriş Yap</a>
+            </h5>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@*<div class="row">
+    @Html.ActionLink("Liste", "About")
+    <div class="col-md-6">
+        @using (Html.BeginForm())
+        {
+            @Html.ValidationSummary(true)
+            <fieldset>
+                <legend>KisiBilgileri</legend>
+
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.Soyadi)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.Soyadi)
+                    @Html.ValidationMessageFor(model => model.Soyadi)
+                </div>
+
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.Adi)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.Adi)
+                    @Html.ValidationMessageFor(model => model.Adi)
+                </div>
+
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.BabaAdi)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.BabaAdi)
+                    @Html.ValidationMessageFor(model => model.BabaAdi)
+                </div>
+
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.AnaAdi)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.AnaAdi)
+                    @Html.ValidationMessageFor(model => model.AnaAdi)
+                </div>
+
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.DogumYeri)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.DogumYeri)
+                    @Html.ValidationMessageFor(model => model.DogumYeri)
+                </div>
+
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.DogumTarih)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.DogumTarih)
+                    @Html.ValidationMessageFor(model => model.DogumTarih)
+                </div>
+
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.MedeniHali)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.MedeniHali)
+                    @Html.ValidationMessageFor(model => model.MedeniHali)
+                </div>
+
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.Din)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.Din)
+                    @Html.ValidationMessageFor(model => model.Din)
+                </div>
+
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.Il)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.Il)
+                    @Html.ValidationMessageFor(model => model.Il)
+                </div>
+
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.Ilce)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.Ilce)
+                    @Html.ValidationMessageFor(model => model.Ilce)
+                </div>
+
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.Mahalle)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.Mahalle)
+                    @Html.ValidationMessageFor(model => model.Mahalle)
+                </div>
+
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.CiltNo)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.CiltNo)
+                    @Html.ValidationMessageFor(model => model.CiltNo)
+                </div>
+
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.AileSiraNo)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.AileSiraNo)
+                    @Html.ValidationMessageFor(model => model.AileSiraNo)
+                </div>
+
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.SiraNo)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.SiraNo)
+                    @Html.ValidationMessageFor(model => model.SiraNo)
+                </div>
+
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.VerildigiYer)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.VerildigiYer)
+                    @Html.ValidationMessageFor(model => model.VerildigiYer)
+                </div>
+
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.VerilisNedeni)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.VerilisNedeni)
+                    @Html.ValidationMessageFor(model => model.VerilisNedeni)
+                </div>
+
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.KayitNo)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.KayitNo)
+                    @Html.ValidationMessageFor(model => model.KayitNo)
+                </div>
+
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.VerilisTarihi)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.VerilisTarihi)
+                    @Html.ValidationMessageFor(model => model.VerilisTarihi)
+                </div>
+
+                <p>
+                    <input type="submit" value="Create" />
+                </p>
+            </fieldset>
+        }
+
+
+    </div>
+    <div class="col-md-6"></div>
+</div>*@
+@*<h3 class="contact_section_title">KİMLİK BİLGİLERİ</h3>
+<div class="contactForm row m0">
+    <form id="contactForm" class="row contact_form" action="">
+        <div class="row m0">
+            <div class="content-left">
+
+                <div class="col-sm-12">
+                    <div class="input-group">
+                        <label for="contact_fname">TC KİMLİK NO</label>
+                        <input type="text" id="TCNo" name="TCNo" class="form-control">
+                        
+                    </div>
+                    <div class="input-group">
+                        <label for="contact_femail">SOYADI</label>
+                        <input type="email"id="Soyadi" name="Soyadi" class="form-control">
+                    </div>
+                    <div class="input-group">
+                        <label for="contact_lname">ADI</label>
+                        <input type="text" id="Adi" name="Adi" class="form-control">
+                    </div>
+                    <div class="input-group">
+                        <label for="contact_fphone">BABA ADI</label>
+                        <input type="tel" id="BabaAdi" name="BabaAdi" class="form-control">
+                    </div>
+                    <div class="input-group">
+                        <label for="contact_lname">ANA ADI</label>
+                        <input type="text" id="AnaAdi" name="AnaAdi" class="form-control">
+                    </div>
+                    <div class="input-group">
+                        <label for="contact_fphone">DOĞUM YERİ</label>
+                        <input type="tel" id="DogumYeri" name="DogumYeri" class="form-control">
+                    </div>
+                    <div class="input-group">
+                        <label for="contact_lname">DOĞUM TARİHİ</label>
+                        <input type="text" id="DogumTarihi" name="DogumTarihi" class="form-control">
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="content-right">
+                
+                <div class="col-sm-12">
+                    <h5 class="contact_section_title">KİMLİK PROFİL RESMİ</h5>
+                    <div class="profile-image-container">
+                        <div class="row m0 image">
+                            <img class="img-responsive" alt="" src="images/pages/team/2.jpg">
+                        </div>
+                        <div class="row m0 title_row more-top">
+                            <input type="file" id="file" name="file" />
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+
+
+        </div>
+        <div class="row m0">
+            <div class="col-sm-12">
+                <div class="input-group">
+                    <h4 class="contact_section_title second-side-of-title">KİMLİK ARKA YÜZ BİLGİLERİ</h4>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="input-group">
+                    <label for="contact_lname">MEDENİ HALİ</label>
+                    <input type="text" name="MedeniHali" id="MedeniHali" class="form-control" />
+                </div>
+
+            </div>
+            <div class="col-sm-4">
+                <div class="input-group">
+                    <label for="contact_lname">DİNİ</label>
+                    <input type="text" name="Din" id="Din" class="form-control" />
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="input-group">
+                    <label for="contact_lname">KAN GRUBU</label>
+                    <input type="text" name="KanGrubu" id="KanGrubu" class="form-control" />
+                </div>
+            </div>
+            <div class="col-sm-12">
+                <div class="input-group">
+                    <h4 class="contact_section_title second-side-of-title">CÜZDANIN KAYITLI OLDUĞU</h4>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="input-group">
+                    <label for="contact_lname">İL</label>
+                    <input type="text" name="Il" id="Il" class="form-control" />
+                </div>
+
+            </div>
+            <div class="col-sm-4">
+                <div class="input-group">
+                    <label for="contact_lname">İLÇE</label>
+                    <input type="text" name="Ilce" id="Ilce" class="form-control" />
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="input-group">
+                    <label for="contact_lname">MAHALLE - KÖY</label>
+                    <input type="text" name="Mahalle" id="Mahalle" class="form-control" />
+                </div>
+            </div>
+        </div>
+        <div class="row m0">
+            <div class="col-sm-4">
+                <div class="input-group">
+                    <label for="contact_lname">CİLT NO</label>
+                    <input type="text" name="CiltNo" id="CiltNo" class="form-control" />
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="input-group">
+                    <label for="contact_lname">AİLE SIRA NO</label>
+                    <input type="text" name="AileSiraNo" id="AileSiraNo" class="form-control" />
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="input-group">
+                    <label for="contact_lname">SIRA NO</label>
+                    <input type="text" name="SiraNo" id="SiraNo" class="form-control" />
+                </div>
+            </div>
+        </div>
+        <div class="row m0">
+            <div class="col-sm-6">
+                <div class="input-group">
+                    <label for="contact_lname">VERİLDİĞİ YER</label>
+                    <input type="text" name="VerildigiYer" id="VerildigiYer" class="form-control" />
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="input-group">
+                    <label for="contact_lname">VERİLİŞ NEDENİ</label>
+                    <input type="text" name="VerilisNedeni" id="VerilisNedeni" class="form-control" />
+                </div>
+            </div>
+
+        </div>
+        <div class="row m0">
+            <div class="col-sm-6">
+                <div class="input-group">
+                    <label for="contact_lname">KAYIT NO</label>
+                    <input type="text" name="KayitNo" id="KayitNo" class="form-control" />
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="input-group">
+                    <label for="contact_lname">VERİLİŞ TARİHİ</label>
+                    <input type="text" name="VerilisTarihi" id="VerilisTarihi" class="form-control" />
+                </div>
+            </div>
+
+        </div>
+        <div class="row m0">
+            <div class="col-sm-12">
+                <input type="submit" value="KAYDET" class="submit_btn pull-right">
+            </div>
+        </div>
+    </form>
+    <div id="success">
+        <span class="green textcenter">Your message was sent successfully! I will be in touch as soon as I can.
+                            </span>
+    </div>
+    <div id="error">
+        <span>Something went wrong, try refreshing and submitting the form again.
+                            </span>
+    </div>
+</div>*@

@@ -1,0 +1,307 @@
+﻿@model kimlik.Models.KmlikTasarim
+@{
+    ViewBag.Title = "KimlikTasarla";
+    
+}
+
+<link href="/Content/NewCardSizeCSS.css" rel="stylesheet" />
+
+<link href="/Content/bootstrap-colorpicker.css" rel="stylesheet" />
+
+<script src="/Scripts/bootstrap.min.js"></script>
+<script src="/Scripts/bootstrap-colorpicker.js"></script>
+
+
+<style type="text/css">
+    .card-container
+    {
+        background-color:@Model.Color;
+    }
+    .card-header h4, .card-row label, .card-header h6, .back-side h6 {
+        color:@Model.ColorFont;
+    }
+    .row-bottom{
+    border-bottom-color:@Model.ColorFont;
+    }
+    .back-side,.second-header,.card-pano{
+    background-color:@Model.ColorPano;
+    }
+
+</style>
+
+<h3 class="contact_section_title">KİMLİĞİMİ TASARLA</h3>
+
+
+
+<div class="row">
+    <div class="col-md-12">
+
+        <div class="card-left">
+
+            <form action="/Home/KimlikTasarimEdit/@Model.Id" method="post" enctype="multipart/form-data">
+
+                <h5 class="contact_section_title">KİMLİK TASARIM ADI</h5>
+                <div class="input-group form-group">
+                    <input type="text" placeholder="Yapacağınız Tasarıma İsim Veriniz" class="form-control enable-radious" name="KimlikAdi" id="KimlikAdi" value="@Model.KimlikAdi" />
+                </div>
+
+                <h5 class="contact_section_title">KİMLİK ARKAPLAN RENGİ</h5>
+                <div class="input-group form-group card-front-bg">
+                    <input type="text" value="@Model.Color" class="form-control" name="Color" id="Color" />
+                    <span class="input-group-addon"><i style="background-color: rgb(0, 170, 187);"></i></span>
+                </div>
+
+                <h5 class="contact_section_title">KİMLİK YAZI PANO RENGİ</h5>
+                <div class="input-group form-group card-pano-bg">
+                    <input type="text" value="@Model.ColorPano" class="form-control" name="ColorPano" id="ColorPano" />
+                    <span class="input-group-addon"><i style="background-color: rgb(0, 170, 187);"></i></span>
+                </div>
+                <h5 class="contact_section_title">KİMLİK YAZI RENGİ</h5>
+                <div class="input-group form-group card-font-color">
+                    <input type="text" value="@Model.ColorFont" class="form-control" name="ColorFont" id="ColorFont" />
+                    <span class="input-group-addon"><i style="background-color: rgb(0, 170, 187);"></i></span>
+                </div>
+                <h5 class="contact_section_title">KİMLİK ÖNYÜZ BAŞLIĞI GİRİNİZ</h5>
+                <div class="input-group form-group">
+                    <input type="text" ng-model="yourName" name="KimlikBaslik" id="KimlikBaslik" placeholder="Kimlik Kartı Başlığı Giriniz" value="@Model.KimlikBaslik" class="form-control enable-radious" />
+                </div>
+                <div class="identity-container">
+                    <div class="ic-left">
+                        <h5 class="contact_section_title">KİMLİK SOL LOGO</h5>
+                        <div class="input-group form-group">
+                            <input type="file" id="ImageLeft" name="ImageLeft" class="input-text" />
+                        </div>
+                    </div>
+                    <div class="ic-right">
+                        <h5 class="contact_section_title">KİMLİK SAĞ LOGO</h5>
+                        <div class="input-group form-group">
+                            <input type="file" id="ImageRight" name="ImageRight" />
+                        </div>
+                    </div>
+                </div>
+
+                <h5 class="contact_section_title">KİMLİK ÖN YÜZ ETİKET BAŞLIKLARINI BELİRLEYİNİZ</h5>
+
+                <div class="input-group form-group">
+                    <input type="text" ng-model="etiket1" placeholder="Etiket İsmi Giriniz" value="@Model.Etiket1" class="form-control enable-radious" name="Etiket1" id="Etiket1" />
+                </div>
+                <div class="input-group form-group">
+                    <input type="text" ng-model="etiket2" placeholder="Etiket İsmi Giriniz" value="@Model.Etiket2" class="form-control enable-radious" name="Etiket2" id="Etiket2" />
+                </div>
+                <div class="input-group form-group">
+                    <input type="text" ng-model="etiket3" placeholder="Etiket İsmi Giriniz" value="@Model.Etiket3" class="form-control enable-radious" name="Etiket3" id="Etiket3" />
+                </div>
+                <div class="input-group form-group">
+                    <input type="text" ng-model="etiket4" placeholder="Etiket İsmi Giriniz" value="@Model.Etiket4" class="form-control enable-radious" name="Etiket4" id="Etiket4" />
+                </div>
+                <div class="input-group form-group">
+                    <input type="text" ng-model="etiket5" placeholder="Etiket İsmi Giriniz" value="@Model.Etiket5" class="form-control enable-radious" name="Etiket5" id="Etiket5" />
+                </div>
+                <div class="input-group form-group">
+                    <input type="text" ng-model="etiket6" placeholder="Etiket İsmi Giriniz" value="@Model.Etiket6" class="form-control enable-radious" name="Etiket6" id="Etiket6" />
+                </div>
+                <div class="input-group form-group">
+                    <input type="text" ng-model="etiket7" placeholder="Etiket İsmi Giriniz" value="@Model.Etiket7" class="form-control enable-radious" name="Etiket7" id="Etiket7" />
+                </div>
+
+                <!-- ARKA YÜZ -->
+
+                <h5 class="contact_section_title">KİMLİK ARKA YÜZ BAŞLIĞI GİRİNİZ</h5>
+                <div class="input-group form-group">
+                    <input type="text" ng-model="backFirstTitle" name="KimlikBaslikArka" id="KimlikBaslikArka" value="@Model.KimlikBaslikArka" placeholder="Kimlik Kartı Arka Başlığı Giriniz" class="form-control enable-radious" />
+                </div>
+
+
+
+                <h5 class="contact_section_title">KİMLİK ARKA YÜZ ORTA BAŞLIK BELİRLEYİNİZ</h5>
+
+                <div class="input-group form-group">
+                    <input type="text" ng-model="etiketArkaOrtaBaslik" placeholder="Etiket İsmi Giriniz" class="form-control enable-radious" name="etiketArkaOrtaBaslik" id="etiketArkaOrtaBaslik" value="@Model.etiketArkaOrtaBaslik" />
+                </div>
+
+                <h5 class="contact_section_title">KİMLİK ARKA YÜZ ETİKET BAŞLIKLARINI BELİRLEYİNİZ</h5>
+
+                <div class="input-group form-group">
+                    <input type="text" ng-model="etiket1Arka" value="@Model.Etiket1Arka" placeholder="Etiket İsmi Giriniz" class="form-control enable-radious" name="Etiket1Arka" id="Etiket1Arka" />
+                </div>
+
+                <div class="input-group form-group">
+                    <input type="text" ng-model="etiket2Arka" value="@Model.Etiket2Arka" placeholder="Etiket İsmi Giriniz" class="form-control enable-radious" name="Etiket2Arka" id="Etiket2Arka" />
+                </div>
+                <div class="input-group form-group">
+                    <input type="text" ng-model="etiket3Arka" value="@Model.Etiket3Arka" placeholder="Etiket İsmi Giriniz" class="form-control enable-radious" name="Etiket3Arka" id="Etiket3Arka" />
+                </div>
+                <div class="input-group form-group">
+                    <input type="text" ng-model="etiket4Arka" value="@Model.Etiket4Arka" placeholder="Etiket İsmi Giriniz" class="form-control enable-radious" name="Etiket4Arka" id="Etiket4Arka" />
+                </div>
+
+
+
+                <div class="input-group form-group">
+                    <input type="text" ng-model="etiket5Arka" value="@Model.Etiket5Arka" placeholder="Etiket İsmi Giriniz" class="form-control enable-radious" name="Etiket5Arka" id="Etiket5Arka" />
+                </div>
+                <div class="input-group form-group">
+                    <input type="text" ng-model="etiket6Arka" value="@Model.Etiket6Arka" placeholder="Etiket İsmi Giriniz" class="form-control enable-radious" name="Etiket6Arka" id="Etiket6Arka" />
+                </div>
+                <div class="input-group form-group">
+                    <input type="text" ng-model="etiket7Arka" value="@Model.Etiket7Arka" placeholder="Etiket İsmi Giriniz" class="form-control enable-radious" name="Etiket7Arka" id="Etiket7Arka" />
+                </div>
+                <div class="input-group form-group">
+                    <input type="text" ng-model="etiket8Arka" value="@Model.Etiket8Arka" placeholder="Etiket İsmi Giriniz" class="form-control enable-radious" name="Etiket8Arka" id="Etiket8Arka" />
+                </div>
+                <div class="input-group form-group">
+                    <input type="text" ng-model="etiket9Arka" value="@Model.Etiket9Arka" placeholder="Etiket İsmi Giriniz" class="form-control enable-radious" name="Etiket9Arka" id="Etiket9Arka" />
+                </div>
+                <div class="input-group form-group">
+                    <input type="text" ng-model="etiket10Arka" value="@Model.Etiket10Arka" placeholder="Etiket İsmi Giriniz" class="form-control enable-radious" name="Etiket10Arka" id="Etiket10Arka" />
+                </div>
+                <div class="input-group form-group">
+                    <input type="text" ng-model="etiket11Arka" value="@Model.Etiket11Arka" placeholder="Etiket İsmi Giriniz" class="form-control enable-radious" name="Etiket11Arka" id="Etiket11Arka" />
+                </div>
+
+                <div class="input-group form-group">
+                    <input type="submit" value="TASARIMI KAYDET" class="btn btn-success" />
+                </div>
+
+
+            </form>
+
+
+
+        </div>
+
+        <div class="card-right">
+            <div class="card-border no-border-this">
+                <div class="card-container " id="front-side">
+                    <div class="card-header">
+                        <img src="/Uploads/Images/Small/@Model.ImageLeft" alt="Turkiye" id="left-logo" />
+                        <h4 ng-show="!yourName.length">@Model.KimlikBaslik</h4>
+                        <h4 ng-show="yourName.length">{{yourName}}</h4>
+                        <img src="/Uploads/Images/Small/@Model.ImageRight" alt="" id="right-logo" />
+                    </div>
+                    <div class="card-pano" id="card-front-pano">
+                        <div class="card-row">
+                            <label ng-show="!etiket1.length">@Model.Etiket1</label>
+                            <label ng-show="etiket1.length">{{etiket1}}</label>
+                            <label class="row-bottom">: 33448855774</label>
+                        </div>
+                        <div class="card-row">
+                            <label ng-show="!etiket2.length">@Model.Etiket2</label>
+                            <label ng-show="etiket2.length">{{etiket2}}</label>
+                            <label class="row-bottom">: Kadir</label>
+                        </div>
+                        <div class="card-row">
+                            <label ng-show="!etiket3.length">@Model.Etiket3</label>
+                            <label ng-show="etiket3.length">{{etiket3}}</label>
+                            <label class="row-bottom">: CEBEL</label>
+                        </div>
+                        <div class="card-row">
+                            <label ng-show="!etiket4.length">@Model.Etiket4</label>
+                            <label ng-show="etiket4.length">{{etiket4}}</label>
+                            <label class="row-bottom">: KAYA</label>
+                        </div>
+                        <div class="card-row">
+                            <label ng-show="!etiket5.length">@Model.Etiket5</label>
+                            <label ng-show="etiket5.length">{{etiket5}}</label>
+                            <label class="row-bottom">: ASİYE</label>
+                        </div>
+                        <div class="card-row">
+                            <label ng-show="!etiket6.length">@Model.Etiket6</label>
+                            <label ng-show="etiket6.length">{{etiket6}}</label>
+                            <label class="row-bottom">: İZMİR</label>
+                        </div>
+                        <div class="card-row">
+                            <label ng-show="!etiket7.length">@Model.Etiket7</label>
+                            <label ng-show="etiket7.length">{{etiket7}}</label>
+                            <label class="row-bottom">: 17.12.1985</label>
+                        </div>
+                    </div>
+                    <div class="profile-image">
+                        <img src="/images/face5.png" alt="profile" />
+                    </div>
+                </div>
+                <!-- SECOND SIDE -->
+                
+                <div class="card-container second-container " id="second-side">
+                    <div class="card-header second-header">
+                        <h6 ng-show="!backFirstTitle.length">@Model.KimlikBaslikArka</h6>
+                        <h6 ng-show="backFirstTitle.length">{{backFirstTitle}}</h6>
+                    </div>
+
+                    <div class="card-pano back-side">
+                        <div class="card-row new-size">
+                            <label ng-show="!etiket1Arka.length">@Model.Etiket1Arka</label>
+                            <label ng-show="etiket1Arka.length">{{etiket1Arka}}</label>
+                            <label class="row-bottom">: BEKAR</label>
+                        </div>
+                        <div class="card-row new-size">
+                            <label ng-show="!etiket2Arka.length">@Model.Etiket2Arka</label>
+                            <label ng-show="etiket2Arka.length">{{etiket2Arka}}</label>
+                            <label class="row-bottom">: İSLAM</label>
+                        </div>
+                        <div class="card-row new-size">
+                            <label ng-show="!etiket3Arka.length">@Model.Etiket3Arka</label>
+                            <label ng-show="etiket3Arka.length">{{etiket3Arka}}</label>
+                            <label class="row-bottom">: AYDIN</label>
+                        </div>
+                        <div class="card-row new-size">
+                            <label ng-show="!etiket4Arka.length">@Model.Etiket4Arka</label>
+                            <label ng-show="etiket4Arka.length">{{etiket4Arka}}</label>
+                            <label class="row-bottom">: SÖKE</label>
+                        </div>
+                        <h6 ng-show="!etiketArkaOrtaBaslik.length">@Model.etiketArkaOrtaBaslik</h6>
+                        <h6 ng-show="etiketArkaOrtaBaslik.length">{{etiketArkaOrtaBaslik}}</h6>
+                        <div class="card-row new-size">
+                            <label ng-show="!etiket5Arka.length">@Model.Etiket5Arka</label>
+                            <label ng-show="etiket5Arka.length">{{etiket5Arka}}</label>
+                            <label class="row-bottom">: CUMHURİYET</label>
+                        </div>
+                        <div class="card-row new-size">
+
+                            <label ng-show="!etiket6Arka.length">@Model.Etiket6Arka</label>
+                            <label ng-show="etiket6Arka.length">{{etiket6Arka}}</label>
+                            <label class="row-bottom">: 00001</label>
+                        </div>
+                        <div class="card-row new-size">
+                            <label ng-show="!etiket7Arka.length">@Model.Etiket7Arka</label>
+                            <label ng-show="etiket7Arka.length">{{etiket7Arka}}</label>
+                            <label class="row-bottom">: 00002</label>
+                        </div>
+                        <div class="card-row new-size">
+                            <label ng-show="!etiket8Arka.length">@Model.Etiket8Arka</label>
+                            <label ng-show="etiket8Arka.length">{{etiket8Arka}}</label>
+                            <label class="row-bottom">: SÖKE</label>
+                        </div>
+                        <div class="card-row new-size">
+                            <label ng-show="!etiket9Arka.length">@Model.Etiket9Arka</label>
+                            <label ng-show="etiket9Arka.length">{{etiket9Arka}}</label>
+                            <label class="row-bottom">: YENİLEME</label>
+                        </div>
+                        <div class="card-row new-size">
+                            <label ng-show="!etiket10Arka.length">@Model.Etiket10Arka</label>
+                            <label ng-show="etiket10Arka.length">{{etiket10Arka}}</label>
+                            <label class="row-bottom">: 007</label>
+                        </div>
+                        <div class="card-row new-size">
+
+                            <label ng-show="!etiket11Arka.length">@Model.Etiket11Arka</label>
+                            <label ng-show="etiket11Arka.length">{{etiket11Arka}}</label>
+                            <label class="row-bottom">: 17.12.2015</label>
+                        </div>
+                    </div>
+
+
+                </div>
+
+                <!-- SECOND SIDE -->
+
+
+
+
+                
+            </div>
+
+
+
+        </div>
+    </div>

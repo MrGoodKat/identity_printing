@@ -1,0 +1,74 @@
+﻿@model IEnumerable<kimlik.Models.KisiBilgileri>
+@{
+    ViewBag.Title = "About";
+}
+
+<h2>Listeleme</h2>
+
+
+
+<table class="table table-striped">
+    <tr>
+        <th>Soyadi
+        </th>
+        <th>Adi
+        </th>
+        <th>Baba Adi
+        </th>
+        <th>Ana Adi
+        </th>
+        <th>Dogum Yeri
+        </th>
+        <th>Dogum Tarih
+        </th>
+        <th>Medeni Hali
+        </th>
+        <th>Din
+        </th>
+        <th>Il
+        </th>
+        <th>Ilce
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Soyadi)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Adi)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BabaAdi)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AnaAdi)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DogumYeri)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DogumTarih)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MedeniHali)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Din)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Il)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Ilce)
+            </td>
+            <td>
+                <a href="/Home/PrintPage/@item.Id" class="btn btn-danger">Yazdır</a>
+            </td>
+        </tr>
+    }
+
+</table>

@@ -1,0 +1,126 @@
+﻿@model IEnumerable<kimlik.Models.KisiBilgileri>
+@using kimlik.Models
+
+@{
+    ViewBag.Title = "KimlikListeleme";
+    KimlikDbDataContext db = new KimlikDbDataContext();
+    
+}
+
+<h3 class="contact_section_title">YAZDIRILACAKLAR LİSTESİ</h3>
+
+<input type="search" class="light-table-filter form-control" data-table="filter-table" placeholder="Kayıt Arama Yap" style="width:255px; margin:15px auto;">
+
+<table class="table table-striped filter-table" style="width: 100%; table-layout: fixed; text-align: center; margin-bottom: 16.5% !important; margin-top:15px;" id="tableData">
+    <tr>
+
+        <td colspan="2" style="text-align:left;">
+            @*<b>Kimlik Tasarımına Göre Listele : </b>*@
+        </td>
+        <td colspan="5" style="text-align:left;">
+            @*<select name="SelectedKimlik" id="SelectedKimlik">
+                <option value="0">Seçiniz</option>
+                @foreach (var item in db.KisiBilgileris.Where(x=>x.MusteriOnayId==Convert.ToInt32(Session["UserId"])).ToList())
+                {
+                    <option value="@item.KimlikTasarimId">@db.KmlikTasarims.Single(x => x.Id == item.KimlikTasarimId).KimlikAdi</option>
+                }
+            </select>*@
+            
+        </td>
+        
+        <td><b>AYARLAR</b></td>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.TCNo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Soyadi)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Adi)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DogumYeri)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Il)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Ilce)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Mahalle)
+            </td>
+
+            <td>
+                <a href="/Home/KimlikDuzenleme/@item.Id" class="btn btn-primary new-size-btn btn-sm">Düzenle</a>
+                <a href="/Home/PrintPage/@item.Id" class="btn btn-success new-size-btn btn-sm">Yazdır</a>
+            </td>
+        </tr>
+    }
+
+</table>
+
+
+<script type="text/javascript">
+    // assuming you're using jQuery
+    $("#SelectedKimlik").change(function (event) {
+        $.ajax({
+            url: "/Home/KimlikListelemeAjax/" + $(this).val(),
+            data: { id: $(this).val() },
+            type: "POST"
+            //success: function (data) {
+            //    $("#tableData").html(data); // HTML DOM replace
+            //}
+        }).done(function (data) {
+            $("#tableData").html(data);
+        });
+    });
+
+
+    (function (document) {
+        'use strict';
+
+        var LightTableFilter = (function (Arr) {
+
+            var _input;
+
+            function _onInputEvent(e) {
+                _input = e.target;
+                var tables = document.getElementsByClassName(_input.getAttribute('data-table'));
+                Arr.forEach.call(tables, function (table) {
+                    Arr.forEach.call(table.tBodies, function (tbody) {
+                        Arr.forEach.call(tbody.rows, _filter);
+                    });
+                });
+            }
+
+            function _filter(row) {
+                var text = row.textContent.toLowerCase(), val = _input.value.toLowerCase();
+                row.style.display = text.indexOf(val) === -1 ? 'none' : 'table-row';
+            }
+
+            return {
+                init: function () {
+                    var inputs = document.getElementsByClassName('light-table-filter');
+                    Arr.forEach.call(inputs, function (input) {
+                        input.oninput = _onInputEvent;
+                    });
+                }
+            };
+        })(Array.prototype);
+
+        document.addEventListener('readystatechange', function () {
+            if (document.readyState === 'complete') {
+                LightTableFilter.init();
+            }
+        });
+
+    })(document);
+
+</script>

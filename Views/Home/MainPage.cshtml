@@ -1,0 +1,537 @@
+﻿@model kimlik.Models.KisiBilgileri
+@using kimlik.Models
+@{
+    //ViewBag.Title = Model.Musteri.SirketAdi + " - Kimlik Yazdır";
+    KimlikDbDataContext db = new KimlikDbDataContext();
+    //var tasarimModel = db.KmlikTasarims.Single(x => x.Id == Convert.ToInt32(Request.QueryString["id"]));
+
+    Dictionary<string, string> kimlikTasarimModel = new Dictionary<string, string>();
+    byte counter = 1;
+
+    Dictionary<string, string> alreadyAdded = new Dictionary<string, string>();
+
+    /* ÖN TARAFTA TOPLAMDA EN FAZLA 7 ALAN ALINACAK */
+    Dictionary<string, string> FrontSide = new Dictionary<string, string>();
+
+    /* ARKA TARAF */
+    Dictionary<string, string> BackSide = new Dictionary<string, string>();
+
+
+    Dictionary<string, string> nullModelsFront = new Dictionary<string, string>();
+    Dictionary<string, string> nullModelsBack = new Dictionary<string, string>();
+
+    foreach (var item in db.KmlikTasarims.Where(x => x.Id == Convert.ToInt32(Request.QueryString["id"])).ToList())
+    {
+
+        if (!String.IsNullOrEmpty(item.Etiket1))
+        {
+
+            kimlikTasarimModel.Add("TCNo", item.Etiket1);
+            FrontSide.Add("TcNo", item.Etiket1);
+
+        }
+        else
+        {
+            nullModelsFront.Add("TcNo", item.Etiket1);
+        }
+
+        if (!String.IsNullOrEmpty(item.Etiket2))
+        {
+
+            kimlikTasarimModel.Add("Soyadi", item.Etiket2);
+            FrontSide.Add("Soyadi", item.Etiket2);
+        }
+        else
+        {
+            nullModelsFront.Add("Soyadi", item.Etiket2);
+        }
+        if (!String.IsNullOrEmpty(item.Etiket3))
+        {
+
+            kimlikTasarimModel.Add("Adi", item.Etiket3);
+            FrontSide.Add("Adi", item.Etiket3);
+        }
+        else
+        {
+
+            nullModelsFront.Add("Adi", item.Etiket3);
+        }
+        if (!String.IsNullOrEmpty(item.Etiket4))
+        {
+
+            kimlikTasarimModel.Add("BabaAdi", item.Etiket4);
+            FrontSide.Add("BabaAdi", item.Etiket4);
+
+        }
+        else
+        {
+            nullModelsFront.Add("BabaAdi", item.Etiket4);
+        }
+        if (!String.IsNullOrEmpty(item.Etiket5))
+        {
+
+            kimlikTasarimModel.Add("AnaAdi", item.Etiket5);
+            FrontSide.Add("AnaAdi", item.Etiket5);
+
+        }
+        else
+        {
+
+            nullModelsFront.Add("AnaAdi", item.Etiket5);
+        }
+
+
+
+        if (!String.IsNullOrEmpty(item.Etiket6))
+        {
+
+            kimlikTasarimModel.Add("DogumYeri", item.Etiket6);
+            FrontSide.Add("DogumYeri", item.Etiket6);
+
+        }
+        else
+        {
+            nullModelsFront.Add("DogumYeri", item.Etiket6);
+        }
+        if (!String.IsNullOrEmpty(item.Etiket7))
+        {
+
+            kimlikTasarimModel.Add("DogumTarih", item.Etiket7);
+            FrontSide.Add("DogumTarih", item.Etiket7);
+
+        }
+        else
+        {
+            nullModelsFront.Add("DogumTarih", item.Etiket7);
+        }
+        
+        if (!String.IsNullOrEmpty(item.Etiket1Arka))
+        {
+
+            kimlikTasarimModel.Add("MedeniHali", item.Etiket1Arka);
+            BackSide.Add("MedeniHali", item.Etiket1Arka);
+
+        }
+        else
+        {
+            nullModelsBack.Add("MedeniHali", item.Etiket1Arka);
+        }
+        if (!String.IsNullOrEmpty(item.Etiket2Arka))
+        {
+
+            kimlikTasarimModel.Add("Din", item.Etiket2Arka);
+            BackSide.Add("Din", item.Etiket2Arka);
+        }
+        else
+        {
+            nullModelsBack.Add("Din", item.Etiket2Arka);
+        }
+        
+        if (!String.IsNullOrEmpty(item.Etiket3Arka))
+        {
+
+            kimlikTasarimModel.Add("Il", item.Etiket3Arka);
+            BackSide.Add("Il", item.Etiket3Arka);
+        }
+        else
+        {
+            nullModelsBack.Add("Il", item.Etiket3Arka);
+        }
+        if (!String.IsNullOrEmpty(item.Etiket4Arka))
+        {
+
+            kimlikTasarimModel.Add("Ilce", item.Etiket4Arka);
+            BackSide.Add("Ilce", item.Etiket4Arka);
+
+        }
+        else
+        {
+
+            nullModelsBack.Add("Ilce", item.Etiket4Arka);
+        }
+        if (!String.IsNullOrEmpty(item.Etiket5Arka))
+        {
+
+            kimlikTasarimModel.Add("Mahalle", item.Etiket5Arka);
+            BackSide.Add("Mahalle", item.Etiket5Arka);
+
+        }
+        else
+        {
+            nullModelsBack.Add("Mahalle", item.Etiket5Arka);
+
+        }
+        if (!String.IsNullOrEmpty(item.Etiket6Arka))
+        {
+
+            kimlikTasarimModel.Add("CiltNo", item.Etiket6Arka);
+            BackSide.Add("CiltNo", item.Etiket6Arka);
+
+        }
+        else
+        {
+            nullModelsBack.Add("CiltNo", item.Etiket6Arka);
+        }
+        if (!String.IsNullOrEmpty(item.Etiket7Arka))
+        {
+
+            kimlikTasarimModel.Add("AileSiraNo", item.Etiket7Arka);
+            BackSide.Add("AileSiraNo", item.Etiket7Arka);
+        }
+        else
+        {
+            nullModelsBack.Add("AileSiraNo", item.Etiket7Arka);
+        }
+        if (!String.IsNullOrEmpty(item.Etiket8Arka))
+        {
+
+            kimlikTasarimModel.Add("SiraNo", item.Etiket8Arka);
+            BackSide.Add("SiraNo", item.Etiket8Arka);
+
+        }
+        else
+        {
+            nullModelsBack.Add("SiraNo", item.Etiket8Arka);
+
+        }
+        if (!String.IsNullOrEmpty(item.Etiket9Arka))
+        {
+
+            kimlikTasarimModel.Add("VerildigiYer", item.Etiket9Arka);
+            BackSide.Add("VerildigiYer", item.Etiket9Arka);
+        }
+        else
+        {
+            nullModelsBack.Add("VerildigiYer", item.Etiket9Arka);
+        }
+        if (!String.IsNullOrEmpty(item.Etiket10Arka))
+        {
+
+            kimlikTasarimModel.Add("VerilisNedeni", item.Etiket10Arka);
+            BackSide.Add("VerilisNedeni", item.Etiket10Arka);
+        }
+        else
+        {
+            nullModelsBack.Add("VerilisNedeni", item.Etiket10Arka);
+        }
+        //if (!String.IsNullOrEmpty(item.Etiket9Arka))
+        //{
+
+        //    kimlikTasarimModel.Add("KanGrubu", item.Etiket11Arka);
+        //    BackSide.Add("KanGrubu", item.Etiket11Arka);
+        //}
+        //else
+        //{
+        //    nullModelsBack.Add("KanGrubu", item.Etiket11Arka);
+        //}
+        if (!String.IsNullOrEmpty(item.Etiket11Arka))
+        {
+
+            kimlikTasarimModel.Add("KayitNo", item.Etiket11Arka);
+            BackSide.Add("KayitNo", item.Etiket11Arka);
+        }
+        else
+        {
+            nullModelsBack.Add("KayitNo", item.Etiket11Arka);
+        }
+        if (!String.IsNullOrEmpty(item.Etiket12Arka))
+        {
+
+            kimlikTasarimModel.Add("VerilisTarihi", item.Etiket12Arka);
+            BackSide.Add("VerilisTarihi", item.Etiket12Arka);
+        }
+        else
+        {
+            nullModelsBack.Add("VerilisTarihi", item.Etiket12Arka);
+        }
+        
+
+        //ImagePath Standart
+    }
+
+    
+
+    <script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+    
+      
+    try
+    {
+        if (!String.IsNullOrEmpty(Session["UserId"].ToString()))
+        {
+    <h3 class="contact_section_title">@db.KmlikTasarims.Single(x => x.Id == Convert.ToInt32(Request.QueryString["id"])).KimlikBaslik.ToUpper()</h3>
+    <div class="contactForm row m0">
+        <form class="row contact_form" action="/Home/MainPage/" enctype="multipart/form-data" method="post" id="form-member">
+
+            <div class="row m0">
+                <div class="content-left">
+                    <input type="hidden" name="KimlikTasarimId" id="KimlikTasarimId" value="@Convert.ToInt32(Request.QueryString["id"])" />
+                    <div class="col-sm-12">
+
+                        @if (nullModelsFront.Count > 0)
+                        {
+                            foreach (var item in nullModelsFront.ToList())
+                            {
+                            <div class="input-group" style="display: none !important;">
+                                <label for="contact_fname">@item.Value</label>
+                                <input type="text" id="@item.Key" name="@item.Key" class="form-control">
+                            </div>
+                            }
+                        }
+
+
+                        @foreach (var item in FrontSide.ToList())
+                        {
+
+
+                            if (!String.IsNullOrEmpty(item.Value) && !String.IsNullOrWhiteSpace(item.Value) && !item.Value.Contains("KimlikBaslikArka") && !item.Value.Contains("etiketArkaOrtaBaslik"))
+                            {
+                            <div class="input-group">
+                                <label for="contact_fname">@item.Value</label>
+                                <input type="text" id="@item.Key" name="@item.Key" class="form-control">
+                            </div>
+                                
+                            }
+
+                        }
+                    </div>
+
+                </div>
+
+                <!-- profil Resmi -->
+
+                <div class="content-right">
+                    <!-- kimlik resmi -->
+                    <div class="col-sm-12">
+                        <h5 class="contact_section_title">KİMLİK PROFİL RESMİ</h5>
+                        <div class="profile-image-container">
+                            <div class="row m0 image">
+                                <img class="img-responsive" alt="" title="Örnek Resim" src="/images/face5.png">
+                            </div>
+                            <div class="row m0 title_row more-top">
+                                <input type="file" id="ImagePath" name="ImagePath" />
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+
+                <!-- profil Resmi -->
+
+
+            </div>
+
+            <div class="row m0">
+                @{
+                        if (!String.IsNullOrEmpty(db.KmlikTasarims.Single(x => x.Id == Convert.ToInt32(Request.QueryString["id"])).KimlikBaslikArka))
+                        {
+                    <div class="col-sm-12">
+                        <div class="input-group">
+                            <h4 class="contact_section_title second-side-of-title">@db.KmlikTasarims.Single(x => x.Id == Convert.ToInt32(Request.QueryString["id"])).KimlikBaslikArka.ToUpper()</h4>
+                        </div>
+                    </div>
+                        }
+                        if (nullModelsBack.Count > 0)
+                        {
+                            foreach (var item in nullModelsBack.ToList())
+                            {
+                    <div class="col-sm-3" style="display: none !important;">
+                        <div class="input-group">
+                            <label for="contact_lname">@item.Value</label>
+                            <input type="text" name="@item.Key" id="@item.Key" class="form-control" />
+                        </div>
+
+                    </div>
+                            }
+                        }
+
+
+                        foreach (var item in BackSide.Take(4).ToList())
+                        {
+
+                            counter++;    
+                    <div class="col-sm-3">
+                        <div class="input-group">
+                            <label for="contact_lname">@item.Value</label>
+                            <input type="text" name="@item.Key" id="@item.Key" class="form-control" />
+                        </div>
+
+                    </div>
+                            
+                        }
+
+                        if (!String.IsNullOrEmpty(db.KmlikTasarims.Single(x => x.Id == Convert.ToInt32(Request.QueryString["id"])).etiketArkaOrtaBaslik))
+                        {
+                    <div class="col-sm-12">
+                        <div class="input-group">
+                            <h4 class="contact_section_title second-side-of-title">@db.KmlikTasarims.Single(x => x.Id == Convert.ToInt32(Request.QueryString["id"])).etiketArkaOrtaBaslik.ToUpper()</h4>
+                        </div>
+                    </div>
+                        }
+
+                        foreach (var item in BackSide.Skip(counter-1).ToList())
+                        {
+                            
+                            counter++;        
+                    <div class="col-sm-4">
+                        <div class="input-group">
+                            <label for="contact_lname">@item.Value</label>
+                            <input type="text" name="@item.Key" id="@item.Key" class="form-control" />
+                        </div>
+                    </div>
+                            
+                        }   
+                    
+                }
+
+            </div>
+
+            <div class="row m0">
+                <div class="col-sm-12">
+                    <input type="submit" value="KAYDET" class="submit_btn pull-right">
+                </div>
+            </div>
+
+        </form>
+
+
+    </div>
+
+        }
+        else
+        {
+            Response.Redirect("/Home/Login");
+        }
+    }
+    catch (Exception)
+    {
+        //Response.Redirect("/Home/Login");
+    }
+   
+    
+}
+
+@*<script type="text/javascript">
+
+    $("#form-member").validate({
+        rules: {
+            TCNo: {
+                required: true
+            },
+            Soyadi: {
+                required: true
+            },
+            Adi: {
+                required: true
+            },
+            BabaAdi: {
+                required: true
+            },
+            DogumYeri: {
+                required: true
+            },
+            DogumTarih: {
+                required: true
+            },
+            MedeniHali: {
+                required: true
+            },
+            Din: {
+                required: true
+            },
+            Il: {
+                required: true
+            },
+            Ilce: {
+                required: true
+            },
+            Mahalle: {
+                required: true
+            },
+            CiltNo: {
+                required: true
+            },
+            AileSiraNo: {
+                required: true
+            },
+            SiraNo: {
+                required: true
+            },
+            VerildigiYer: {
+                required: true
+            },
+            VerilisNedeni: {
+                required: true
+            },
+            KayitNo: {
+                required: true
+            },
+            VerilisTarihi: {
+                required: true
+            }
+
+
+
+        },
+        messages: {
+            TCNo: {
+                required: "<p class='text-danger padd-style'>*</p>"
+            },
+            Soyadi: {
+                required: "<p class='text-danger padd-style'>*</p>"
+            },
+            Adi: {
+                required: "<p class='text-danger padd-style'>*</p>"
+            },
+            BabaAdi: {
+                required: "<p class='text-danger padd-style'>*</p>"
+            },
+            DogumYeri: {
+                required: "<p class='text-danger padd-style'>*</p>"
+            },
+            DogumTarih: {
+                required: "<p class='text-danger padd-style'>*</p>"
+            },
+            MedeniHali: {
+                required: "<p class='text-danger padd-style'>*</p>"
+            },
+            Din: {
+                required: "<p class='text-danger padd-style'>*</p>"
+            },
+            Il: {
+                required: "<p class='text-danger padd-style'>*</p>"
+            },
+            Ilce: {
+                required: "<p class='text-danger padd-style'>*</p>"
+            },
+            Mahalle: {
+                required: "<p class='text-danger padd-style'>*</p>"
+            },
+            CiltNo: {
+                required: "<p class='text-danger padd-style'>*</p>"
+            },
+            AileSiraNo: {
+                required: "<p class='text-danger padd-style'>*</p>"
+            },
+            SiraNo: {
+                required: "<p class='text-danger padd-style'>*</p>"
+            },
+            VerildigiYer: {
+                required: "<p class='text-danger padd-style'>*</p>"
+            },
+            VerilisNedeni: {
+                required: "<p class='text-danger padd-style'>*</p>"
+            },
+            KayitNo: {
+                required: "<p class='text-danger padd-style'>*</p>"
+            },
+            VerilisTarihi: {
+                required: "<p class='text-danger padd-style'>*</p>"
+            }
+
+        }
+    });
+
+</script>*@
+

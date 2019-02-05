@@ -1,0 +1,781 @@
+﻿@model kimlik.Models.KisiBilgileri
+@using kimlik.Models
+@{
+    ViewBag.Title = "PrintPage";
+    KimlikDbDataContext db = new KimlikDbDataContext();
+    var result = db.KmlikTasarims.OrderByDescending(x => x.Id).Single(x => x.Id == Model.KimlikTasarimId);
+
+    string dontShow = "";
+}
+
+
+
+<link href="/Content/NewCardSizeCSS.css" rel="stylesheet" />
+@*<link href="@Url.Content("http://kimlik-yonetim.local.com/Uploads/NewCardSizeCSS.css") " rel="stylesheet" /> *@
+
+<script src="/Scripts/hdpicanvas.js"></script>
+<style>
+    .no-border-this-cr {
+        border: medium none !important;
+        float: right;
+        width: 458px !important;
+    }
+
+        .no-border-this-cr > .data-container {
+            width: 100%;
+            padding-left: 0;
+        }
+
+            .no-border-this-cr > .data-container > label {
+                width: 100%;
+                text-align: center;
+            }
+
+    .container-card {
+        width: 100%;
+        padding-bottom: 0;
+    }
+
+    .card-container {
+        /*width: 720px;
+        height: 405px;*/
+        width: 1000px;
+        height: 563px;
+        float: left;
+    }
+
+    .card-border {
+        /*width: 655px !important;
+        height: 360px !important;*/
+        width: 100%;
+        height: 563px !important;
+        border: none !important;
+        float: left;
+        padding-top: 0;
+    }
+
+    .cc-second {
+        background: #1d3e73;
+        padding-top: 5px;
+        margin: auto;
+        /*width: 700px;
+        height: 355px;*/
+        width: 980px;
+        height: 553px;
+        border-radius: 8px;
+    }
+
+    .card-header {
+        background: #fff none repeat scroll 0 0;
+        height: 85px;
+        margin: 5px auto;
+        width: 97%;
+        position: relative;
+    }
+
+        .card-header img {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            /*display:none !important;*/
+            border-radius: 100px;
+        }
+
+            .card-header img:first-child {
+                bottom: -39px;
+                height: 140px;
+                left: 40px;
+                margin: 0;
+                padding: 0;
+                width: 140px;
+            }
+
+            .card-header img:last-child {
+                right: 40px;
+                bottom: -39px;
+                width: 140px;
+                height: 140px;
+            }
+
+        .card-header h4, .card-header h5, .card-header h3, .card-header h2, .card-header h1 {
+            width: 100%;
+            color: #1d3e73;
+            padding-left: 70px;
+            padding-right: 70px;
+            text-align: center;
+            margin-top: 0;
+            margin-bottom: 8px;
+        }
+
+        .card-header h4, .card-header h1 {
+            padding-top: 5px;
+            margin-bottom: 3px;
+            /*font-size: 1.8em;*/
+            font-weight: bold;
+        }
+
+        .card-header h5, .card-header h3 {
+            margin-top: 0;
+            padding-top: 0;
+            margin-bottom: 0;
+            /*font-size: 1.6em;*/
+        }
+
+    h6, .cc-second > h3 {
+        color: #FFF;
+        text-align: center;
+        font-weight: bold;
+        /*font-size: .8em;*/
+        margin-top: 5px;
+        margin-bottom: 5px;
+        /*font-size: 1.1em;*/
+    }
+
+    .card-pano {
+        margin-top: 5px;
+        background: #FFF;
+        border-radius: 0;
+        width: 97%;
+        height: 410px;
+    }
+
+    .cp-left {
+        /*width: 175px;
+        height: 200px;*/
+        width: 270px;
+        height: 330px;
+        margin-right: 10px;
+        float: left;
+    }
+
+        .cp-left > .profile-image {
+            position: relative;
+            left: 0;
+            float: left;
+            top: 0;
+            height: 325px;
+            width: 265px;
+            border-color: #1d3e73;
+        }
+
+            .cp-left > .profile-image img {
+                bottom: 0;
+                left: 0;
+                margin: auto;
+                position: absolute;
+                right: 0;
+                width: 98%;
+                height: 98%;
+                top: 0;
+            }
+
+    .cp-right {
+        width: 650px;
+        float: left;
+    }
+
+    .label-container {
+        float: left;
+        width: 315px;
+    }
+
+        .label-container label {
+            color: #1d3e73;
+            font-size: 2.8em;
+            height: 30px;
+            margin: 0;
+            font-weight: bold;
+            width: 100%;
+            padding-top: 0;
+        }
+
+    .data-container {
+        float: left;
+        width: 325px;
+        height: 50px;
+        padding-left: 35px;
+    }
+
+        .data-container label {
+            border: none;
+            font-size: 2.8em;
+            padding-top: 12px;
+            width: 100%;
+            color: #000;
+        }
+
+    .card-row {
+        height: 65px;
+        border-bottom: 1px solid #446599;
+    }
+
+    .no-border-bottom {
+        border-bottom: none !important;
+    }
+
+    .new-size-button-print {
+        bottom: 570px;
+        float: right;
+        height: 60px;
+        position: relative;
+        right: -14px;
+        width: 120px;
+    }
+
+    .back-side {
+        /*height: 440px;*/
+        height: 530px;
+    }
+
+        .back-side h4, .back-side h2 {
+            margin-top: 0;
+            margin-bottom: 3px;
+            padding-left: 8px;
+        }
+
+        .back-side .label-container label {
+            padding-left: 8px;
+        }
+
+    .new-size {
+        width: 100%;
+        border-left: 1px solid #446599;
+        border-right: 1px solid #446599;
+        border-bottom: 0;
+        height: 70px;
+        border-top: 1px solid #446599;
+    }
+
+    .one-column {
+    }
+
+        .one-column > .label-container {
+            /*width: 120px;*/
+            width: 155px;
+        }
+
+        .one-column > .data-container {
+            width: 120px;
+            /*width: 170px;*/
+        }
+
+        .one-column > .card-row {
+            /*width: 265px;*/
+            width: 300px;
+            border: none;
+            padding-left: 15px;
+        }
+
+            .one-column > .card-row > .label-container {
+                /*width: 90px;*/
+                /*width: 120px;*/
+                width: 186px;
+            }
+
+            .one-column > .card-row > .data-container {
+                /*width: 130px;*/
+                width: 95px;
+            }
+
+    .oc-new {
+        border-bottom: 1px solid #446599;
+    }
+
+        .oc-new > .card-row {
+            width: 395px;
+            border: none;
+        }
+
+        .oc-new > .label-container {
+            /*width: 160px;*/
+            width: 230px;
+        }
+
+        .oc-new > .data-container {
+            padding-left: 25px;
+            /*width: 215px;*/
+            width: 235px;
+        }
+
+        .oc-new > .card-row > .label-container {
+            /*width: 190px;*/
+            width: 230px;
+        }
+
+        .oc-new > .card-row > .data-container {
+            /*padding-left: 0;*/
+            /*width: 200px;*/
+            width: 165px;
+        }
+
+    .tc-width {
+        /*width: 382px;*/
+        width: 475px;
+        border-bottom: 1px solid #446599;
+        border-top: 0;
+    }
+
+        .tc-width > .data-container {
+            width: 150px;
+            padding-left: 0;
+            position: relative;
+            left: -20px;
+        }
+
+    .more-left {
+        position: relative;
+        left: -50px;
+    }
+
+    .blood-group {
+        border-bottom: 0 none;
+        left: -279px;
+        position: relative;
+        top: -65px;
+        width: 280px;
+    }
+
+        .blood-group > .label-container {
+            width: 155px;
+        }
+
+        .blood-group > .data-container {
+            padding-left: 10px;
+            width: 125px;
+        }
+
+    .sto-muhur {
+        bottom: 49px;
+    height: auto;
+    position: relative;
+    right: 165px;
+    transform: rotate(-75deg);
+    width: 130px;
+    z-index: 0;
+    }
+</style>
+
+
+<h3 class="contact_section_title">Kimlik Basım</h3>
+
+
+<div class="container-card">
+
+    <div class="card-border no-border-this clear-position-type">
+
+
+        <div class="card-container " id="front-side" style="background-color:@result.Color;">
+            <div class="cc-second">
+                <div class="card-header">
+                    <img src="/Uploads/Images/Small/@result.ImageLeft" alt="Turkiye" id="left-logo" />
+                    <h1 style="color: #1d3e73;">@result.KimlikBaslik</h1>
+                    @*<h3>SÖKE CHAMBER OF COMMERCE</h3>*@
+                    <h2>@result.KimlikAltBaslik</h2>
+                    <img src="/Uploads/Images/Small/@result.ImageRight" alt="" id="right-logo" />
+                </div>
+                @*<h3>ÜYE KİMLİK KARTI - MEMBERSHIP CARD</h3>*@
+                <h3>@result.KimlikOnAraBaslik</h3>
+                <div class="card-pano" id="card-front-pano" style="background-color:@result.ColorPano;">
+                    <div class="cp-left">
+                        <div class="profile-image">
+                            <img src="/Uploads/Images/Large/@Model.ImagePath" alt="profile" />
+                        </div>
+                    </div>
+                    <div class="cp-right">
+
+                        @if (String.IsNullOrEmpty(Model.TCNo))
+                        {
+                            dontShow = "display:none;";
+                        }
+                        else
+                        {
+                            dontShow = "";
+                        }
+                        <div class="card-row" style="@dontShow">
+                            <div class="label-container">
+                                <label style="color:@result.ColorFont2;">@result.Etiket1</label>
+                                <label style="color:@result.ColorFont2;">@result.Etiket1Eng</label>
+                            </div>
+                            <div class="data-container">
+                                <label class="row-bottom" style="color:@result.ColorFont;border-bottom-color:@result.ColorFont;">@Model.TCNo</label>
+                            </div>
+
+                        </div>
+                        @if (String.IsNullOrEmpty(Model.Adi))
+                        {
+                            dontShow = "display:none;";
+                        }
+                        else
+                        {
+                            dontShow = "";
+                        }
+                        <div class="card-row" style="@dontShow">
+                            <div class="label-container">
+                                <label style="color:@result.ColorFont2;">@result.Etiket2</label>
+                                <label style="color:@result.ColorFont2;">@result.Etiket2Eng</label>
+                            </div>
+                            <div class="data-container">
+                                <label class="row-bottom" style="color:@result.ColorFont;border-bottom-color:@result.ColorFont;" >@Model.Soyadi</label>
+                            </div>
+                        </div>
+                        @if (String.IsNullOrEmpty(Model.Soyadi))
+                        {
+                            dontShow = "display:none;";
+                        }
+                        else
+                        {
+                            dontShow = "";
+                        }
+                        <div class="card-row" style="@dontShow">
+                            <div class="label-container">
+                                <label style="color:@result.ColorFont2;">@result.Etiket3</label>
+                                <label style="color:@result.ColorFont2;">@result.Etiket3Eng</label>
+                            </div>
+                            <div class="data-container">
+                                <label class="row-bottom" style="color:@result.ColorFont;border-bottom-color:@result.ColorFont;">@Model.Adi</label>
+                            </div>
+
+                        </div>
+                        @if (String.IsNullOrEmpty(Model.BabaAdi))
+                        {
+                            dontShow = "display:none;";
+                        }
+                        else
+                        {
+                            dontShow = "";
+                        }
+                        <div class="card-row" style="@dontShow">
+                            <div class="label-container">
+                                <label style="color:@result.ColorFont2;">@result.Etiket4</label>
+                                <label style="color:@result.ColorFont2;">@result.Etiket4Eng</label>
+                            </div>
+                            <div class="data-container">
+                                <label class="row-bottom" style="color:@result.ColorFont;border-bottom-color:@result.ColorFont;">@Model.BabaAdi</label>
+                            </div>
+                        </div>
+                        @if (String.IsNullOrEmpty(Model.AnaAdi))
+                        {
+                            dontShow = "display:none;";
+                        }
+                        else
+                        {
+                            dontShow = "";
+                        }
+                        <div class="card-row" style="@dontShow">
+                            <div class="label-container">
+                                <label style="color:@result.ColorFont2;">@result.Etiket5</label>
+                                <label style="color:@result.ColorFont2;">@result.Etiket5Eng</label>
+                            </div>
+                            <div class="data-container">
+                                <label class="row-bottom" style="color:@result.ColorFont;border-bottom-color:@result.ColorFont;">@Model.AnaAdi</label>
+                            </div>
+                        </div>
+                        @if (String.IsNullOrEmpty(Model.DogumYeri))
+                        {
+                            dontShow = "display:none;";
+                        }
+                        else
+                        {
+                            dontShow = "";
+                        }
+                        <div class="card-row  no-border-bottom" style="@dontShow">
+                            <div class="label-container">
+                                <label style="color:@result.ColorFont2;">@result.Etiket6</label>
+                                <label style="color:@result.ColorFont2;">@result.Etiket6Eng</label>
+                            </div>
+                            <div class="data-container">
+                                <label class="row-bottom" style="color:@result.ColorFont;border-bottom-color:@result.ColorFont;">@Model.DogumYeri</label>
+                            </div>
+                        </div>
+                        @if (String.IsNullOrEmpty(Model.DogumTarih))
+                        {
+                            dontShow = "display:none;";
+                        }
+                        else
+                        {
+                            dontShow = "";
+                        }
+                        <div class="card-row blood-group" style="@dontShow">
+                            <div class="label-container">
+                                <label style="color:@result.ColorFont2;">@result.Etiket7</label>
+                                <label style="color:@result.ColorFont2;">@result.Etiket7Eng</label>
+                            </div>
+                            <div class="data-container">
+                                <label class="row-bottom" style="color:@result.ColorFont;border-bottom-color:@result.ColorFont;">@Model.DogumTarih</label>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+
+            </div>
+        </div>
+        <!-- Button trigger modal -->
+
+        <button type="button" class="btn btn-success new-size-button-print" data-toggle="modal" data-target="#myModal" id="front-side-button">
+            Ön Yüz Yazdır
+        </button>
+    </div>
+
+
+
+    <div class="card-border">
+        <div class="card-container second-container " id="second-side" style="background-color:@result.Color;">
+            <div class="cc-second">
+                <div class="card-pano back-side" style="background-color:@result.ColorPano;">
+                    <h2 style="color: #1d3e73;">@result.KimlikBaslikArka</h2>
+
+                    @if (String.IsNullOrEmpty(Model.MedeniHali))
+                    {
+                        dontShow = "display:none;";
+                    }
+                    else
+                    {
+                        dontShow = "";
+                    }
+                    <div class="card-row new-size" style="@dontShow">
+                        <div class="label-container">
+                            <label style="color:@result.ColorFont2;">@result.Etiket1Arka</label>
+                            <label style="color:@result.ColorFont2;">@result.Etiket1ArkaEng</label>
+                        </div>
+                        <div class="data-container">
+                            <label class="row-bottom" style="color:@result.ColorFont;border-bottom-color:@result.ColorFont;">@Model.MedeniHali</label>
+                        </div>
+                    </div>
+                    @if (String.IsNullOrEmpty(Model.Din))
+                    {
+                        dontShow = "display:none;";
+                    }
+                    else
+                    {
+                        dontShow = "";
+                    }
+                    <div class="card-row new-size" style="@dontShow">
+                        <div class="label-container">
+                            <label style="color:@result.ColorFont2;">@result.Etiket2Arka</label>
+                            <label style="color:@result.ColorFont2;">@result.Etiket2ArkaEng</label>
+                        </div>
+                        <div class="data-container">
+                            <label class="row-bottom" style="color:@result.ColorFont;border-bottom-color:@result.ColorFont;">@Model.Din</label>
+                        </div>
+
+                    </div>
+                    @if (String.IsNullOrEmpty(Model.Il))
+                    {
+                        dontShow = "display:none;";
+                    }
+                    else
+                    {
+                        dontShow = "";
+                    }
+                    <!-- tek sütun -->
+                    <div class="card-row new-size one-column" style="@dontShow">
+                        <div class="label-container">
+                            <label style="color:@result.ColorFont2;">@result.Etiket3Arka</label>
+                            <label style="color:@result.ColorFont2;">@result.Etiket3ArkaEng</label>
+                        </div>
+                        <div class="data-container">
+                            <label class="row-bottom" style="color:@result.ColorFont;border-bottom-color:@result.ColorFont;">@Model.Il</label>
+                        </div>
+
+                        @if (String.IsNullOrEmpty(Model.Ilce))
+                        {
+                            dontShow = "display:none;";
+                        }
+                        else
+                        {
+                            dontShow = "";
+                        }
+                        <div class="card-row new-size" style="@dontShow">
+                            <div class="label-container">
+                                <label style="color:@result.ColorFont2;">@result.Etiket4Arka</label>
+                                <label style="color:@result.ColorFont2;">@result.Etiket4ArkaEng</label>
+                            </div>
+                            <div class="data-container  more-left">
+                                <label class="row-bottom" style="color:@result.ColorFont;border-bottom-color:@result.ColorFont;">@Model.Ilce</label>
+                            </div>
+                        </div>
+
+                        @if (String.IsNullOrEmpty(Model.Mahalle))
+                        {
+                            dontShow = "display:none;";
+                        }
+                        else
+                        {
+                            dontShow = "";
+                        }
+                        <div class="card-row new-size" style="@dontShow">
+                            <div class="label-container">
+                                <label style="color:@result.ColorFont2;">@result.Etiket5Arka</label>
+                                <label style="color:@result.ColorFont2;">@result.Etiket5ArkaEng</label>
+                            </div>
+                            <div class="data-container">
+                                <label class="row-bottom" style="color:@result.ColorFont;border-bottom-color:@result.ColorFont;">@(Model.Mahalle.Length > 10 ? Model.Mahalle.Substring(0, 10) : Model.Mahalle)</label>
+                            </div>
+                        </div>
+
+                    </div>
+                    <!-- tek sütun -->
+                    @if (!String.IsNullOrEmpty(result.etiketArkaOrtaBaslik))
+                    {
+                        <h6 style="color:@result.ColorFont;">@result.etiketArkaOrtaBaslik</h6>
+                    }
+
+
+                    @if (String.IsNullOrEmpty(Model.CiltNo))
+                    {
+                        dontShow = "display:none;";
+                    }
+                    else
+                    {
+                        dontShow = "";
+                    }
+                    <div class="card-row new-size" style="@dontShow">
+                        <div class="label-container">
+                            <label style="color:@result.ColorFont2;">@result.Etiket6Arka</label>
+                            <label style="color:@result.ColorFont2;">@result.Etiket6ArkaEng</label>
+                        </div>
+                        <div class="data-container">
+                            <label class="row-bottom" style="color:@result.ColorFont;border-bottom-color:@result.ColorFont;">@Model.CiltNo</label>
+                        </div>
+                    </div>
+                    @if (String.IsNullOrEmpty(Model.AileSiraNo))
+                    {
+                        dontShow = "display:none;";
+                    }
+                    else
+                    {
+                        dontShow = "";
+                    }
+                    <div class="card-row new-size oc-new" style="@dontShow">
+                        <div class="label-container">
+                            <label style="color:@result.ColorFont2;">@result.Etiket7Arka</label>
+                            <label style="color:@result.ColorFont2;">@result.Etiket7ArkaEng</label>
+                        </div>
+                        <div class="data-container">
+                            <label class="row-bottom" style="color:@result.ColorFont;border-bottom-color:@result.ColorFont;">@Model.AileSiraNo</label>
+                        </div>
+                        @if (String.IsNullOrEmpty(Model.SiraNo))
+                        {
+                            dontShow = "display:none;";
+                        }
+                        else
+                        {
+                            dontShow = "";
+                        }
+                        <div class="card-row new-size" style="@dontShow">
+                            <div class="label-container">
+                                <label style="color:@result.ColorFont2;">@result.Etiket8Arka</label>
+                                <label style="color:@result.ColorFont2;">@result.Etiket8ArkaEng</label>
+                            </div>
+                            <div class="data-container">
+                                <label class="row-bottom" style="color:@result.ColorFont;border-bottom-color:@result.ColorFont;">@Model.SiraNo</label>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    @if (String.IsNullOrEmpty(Model.VerildigiYer))
+                    {
+                        dontShow = "display:none;";
+                    }
+                    else
+                    {
+                        dontShow = "";
+                    }
+                    <div class="card-row new-size tc-width" style="@dontShow">
+                        <div class="label-container">
+                            <label style="color:@result.ColorFont2;">@result.Etiket9Arka</label>
+                            <label style="color:@result.ColorFont2;">@result.Etiket9ArkaEng</label>
+                        </div>
+                        <div class="data-container">
+                            <label class="row-bottom" style="color:@result.ColorFont;border-bottom-color:@result.ColorFont;">@Model.VerildigiYer</label>
+                        </div>
+                    </div>
+                    @if (String.IsNullOrEmpty(Model.VerilisNedeni))
+                    {
+                        dontShow = "display:none;";
+                    }
+                    else
+                    {
+                        dontShow = "";
+                    }
+                    <div class="card-row new-size no-border-this-cr" style="@dontShow">
+                        @*<div class="label-container">
+                            <label style="color:@result.ColorFont2;">@result.Etiket10Arka</label>
+                            <label style="color:@result.ColorFont2;">@result.Etiket10ArkaEng</label>
+                        </div>*@
+                        <div class="data-container pull-right text-right">
+                            <label class="row-bottom" style="color:@result.ColorFont;border-bottom-color:@result.ColorFont;position:relative;z-index:1;">@Model.VerilisNedeni</label>
+                            <img src="/images/muhur2.png" class="sto-muhur" />
+                        </div>
+                    </div>
+                    @if (String.IsNullOrEmpty(Model.KayitNo))
+                    {
+                        dontShow = "display:none;";
+                    }
+                    else
+                    {
+                        dontShow = "";
+                    }
+                    <div class="card-row new-size" style="@dontShow">
+                        <div class="label-container">
+                            <label style="color:@result.ColorFont2;">@result.Etiket11Arka</label>
+                            <label style="color:@result.ColorFont2;">@result.Etiket11ArkaEng</label>
+                        </div>
+                        <div class="data-container">
+                            <label class="row-bottom" style="color:@result.ColorFont;border-bottom-color:@result.ColorFont;">@Model.KayitNo</label>
+                        </div>
+                    </div>
+                    @if (String.IsNullOrEmpty(Model.VerilisTarihi))
+                    {
+                        dontShow = "display:none;";
+                    }
+                    else
+                    {
+                        dontShow = "";
+                    }
+                    <div class="card-row new-size" style="@dontShow">
+                        <div class="label-container">
+                            <label style="color:@result.ColorFont2;">@result.Etiket12Arka</label>
+                            <label style="color:@result.ColorFont2;">@result.Etiket12ArkaEng</label>
+                        </div>
+                        <div class="data-container">
+                            <label class="row-bottom" style="color:@result.ColorFont;border-bottom-color:@result.ColorFont;">@Model.VerilisTarihi</label>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <button type="button" style="left: 1010px; right: 0;" class="btn btn-success pull-left new-size-button-print" data-toggle="modal" data-target="#myModal" id="back-side-button">
+            Arka Yüz Yazdır
+        </button>
+    </div>
+
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Kartı Yazdır</h4>
+            </div>
+            <div class="modal-body" id="popup-body">
+                <img id="pic" src="/images/html5rocks.png">
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" id="print-1">Yazdır</button>
+                <button type="button" class="btn btn-default" id="print-2">Yazdır</button>
+
+
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Kapat</button>
+            </div>
+        </div>
+    </div>
+</div>
+

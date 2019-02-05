@@ -1,0 +1,171 @@
+﻿@model IEnumerable<kimlik.Models.MusteriOnayKimlikTasarim>
+@using kimlik.Models
+@{
+    ViewBag.Title = "KimlikListeleme";
+    KimlikDbDataContext db = new KimlikDbDataContext();
+    //db.KmlikTasarims.Single(x => x.Id == item.KimlikTasarimId)
+    byte counter = 0;
+    
+}
+
+<link href="/Content/NewCardSizeCSS.css" rel="stylesheet" />
+
+
+<style type="text/css">
+    .clear-position-type
+    {
+        position: relative;
+        left: 0;
+    }
+
+    .card-border
+    {
+        width: 90%;
+        margin: auto;
+        clear: both;
+        height: 240px;
+        float: initial;
+    }
+
+    .card-container
+    {
+        float: left;
+        margin-left: 20px;
+    }
+</style>
+
+
+
+
+
+
+@foreach (var item in Model)
+{
+    
+    
+    <h3 class="contact_section_title">@db.KmlikTasarims.Single(x => x.Id == item.KimlikTasarimId).KimlikAdi</h3>    
+    <div class="card-border no-border-this clear-position-type">
+        <div class="card-container " id="front-side" style="background-color:@db.KmlikTasarims.Single(x => x.Id == item.KimlikTasarimId).Color;">
+            <div class="card-header">
+                <img src="/Uploads/Images/Small/@db.KmlikTasarims.Single(x => x.Id == item.KimlikTasarimId).ImageLeft" alt="Turkiye" id="left-logo" />
+                <h4 style="color:@db.KmlikTasarims.Single(x => x.Id == item.KimlikTasarimId).ColorFont;">@db.KmlikTasarims.Single(x => x.Id == item.KimlikTasarimId).KimlikBaslik</h4>
+
+                <img src="/Uploads/Images/Small/@db.KmlikTasarims.Single(x => x.Id == item.KimlikTasarimId).ImageRight" alt="" id="right-logo" />
+            </div>
+            <div class="card-pano" id="card-front-pano" style="background-color:@db.KmlikTasarims.Single(x => x.Id == item.KimlikTasarimId).ColorPano;">
+                <div class="card-row">
+                    <label style="color:@db.KmlikTasarims.Single(x => x.Id == item.KimlikTasarimId).ColorFont;">@db.KmlikTasarims.Single(x => x.Id == item.KimlikTasarimId).Etiket1</label>
+
+                    <label class="row-bottom" style="color:@db.KmlikTasarims.Single(x => x.Id == item.KimlikTasarimId).ColorFont;border-bottom-color:@db.KmlikTasarims.Single(x => x.Id == item.KimlikTasarimId).ColorFont;">: 33448855774</label>
+                </div>
+                <div class="card-row">
+                    <label style="color:@db.KmlikTasarims.Single(x => x.Id == item.KimlikTasarimId).ColorFont;">@db.KmlikTasarims.Single(x => x.Id == item.KimlikTasarimId).Etiket2</label>
+
+                    <label class="row-bottom" style="color:@db.KmlikTasarims.Single(x => x.Id == item.KimlikTasarimId).ColorFont;border-bottom-color:@db.KmlikTasarims.Single(x => x.Id == item.KimlikTasarimId).ColorFont;">: Kadir</label>
+                </div>
+                <div class="card-row">
+                    <label style="color:@db.KmlikTasarims.Single(x => x.Id == item.KimlikTasarimId).ColorFont;">@db.KmlikTasarims.Single(x => x.Id == item.KimlikTasarimId).Etiket3</label>
+
+                    <label class="row-bottom" style="color:@db.KmlikTasarims.Single(x => x.Id == item.KimlikTasarimId).ColorFont;border-bottom-color:@db.KmlikTasarims.Single(x => x.Id == item.KimlikTasarimId).ColorFont;">: CEBEL</label>
+                </div>
+                <div class="card-row">
+                    <label style="color:@db.KmlikTasarims.Single(x => x.Id == item.KimlikTasarimId).ColorFont;">@db.KmlikTasarims.Single(x => x.Id == item.KimlikTasarimId).Etiket4</label>
+
+                    <label class="row-bottom" style="color:@db.KmlikTasarims.Single(x => x.Id == item.KimlikTasarimId).ColorFont;border-bottom-color:@db.KmlikTasarims.Single(x => x.Id == item.KimlikTasarimId).ColorFont;">: KAYA</label>
+                </div>
+                <div class="card-row">
+                    <label style="color:@db.KmlikTasarims.Single(x => x.Id == item.KimlikTasarimId).ColorFont;">@db.KmlikTasarims.Single(x => x.Id == item.KimlikTasarimId).Etiket5</label>
+                    <label class="row-bottom" style="color:@db.KmlikTasarims.Single(x => x.Id == item.KimlikTasarimId).ColorFont;border-bottom-color:@db.KmlikTasarims.Single(x => x.Id == item.KimlikTasarimId).ColorFont;">: ASİYE</label>
+                </div>
+                <div class="card-row">
+                    <label style="color:@db.KmlikTasarims.Single(x => x.Id == item.KimlikTasarimId).ColorFont;">@db.KmlikTasarims.Single(x => x.Id == item.KimlikTasarimId).Etiket6</label>
+
+                    <label class="row-bottom" style="color:@db.KmlikTasarims.Single(x => x.Id == item.KimlikTasarimId).ColorFont;border-bottom-color:@db.KmlikTasarims.Single(x => x.Id == item.KimlikTasarimId).ColorFont;">: İZMİR</label>
+                </div>
+                <div class="card-row">
+                    <label style="color:@db.KmlikTasarims.Single(x => x.Id == item.KimlikTasarimId).ColorFont;">@db.KmlikTasarims.Single(x => x.Id == item.KimlikTasarimId).Etiket7</label>
+
+                    <label class="row-bottom" style="color:@db.KmlikTasarims.Single(x => x.Id == item.KimlikTasarimId).ColorFont;border-bottom-color:@db.KmlikTasarims.Single(x => x.Id == item.KimlikTasarimId).ColorFont;">: 17.12.1985</label>
+                </div>
+            </div>
+            <div class="profile-image">
+                <img src="/images/face5.png" alt="profile" />
+            </div>
+        </div>
+        <!-- SECOND SIDE -->
+
+        <div class="card-container second-container " id="second-side" style="background-color:@db.KmlikTasarims.Single(x => x.Id == item.KimlikTasarimId).Color;">
+            <div class="card-header second-header" style="color:@db.KmlikTasarims.Single(x => x.Id == item.KimlikTasarimId).Color;background-color:@db.KmlikTasarims.Single(x => x.Id == item.KimlikTasarimId).ColorPano;">
+                <h6 style="color:@db.KmlikTasarims.Single(x => x.Id == item.KimlikTasarimId).ColorFont;">@db.KmlikTasarims.Single(x => x.Id == item.KimlikTasarimId).KimlikBaslikArka</h6>
+
+            </div>
+
+            <div class="card-pano back-side" style="background-color:@db.KmlikTasarims.Single(x => x.Id == item.KimlikTasarimId).ColorPano;">
+                <div class="card-row new-size">
+                    <label style="color:@db.KmlikTasarims.Single(x => x.Id == item.KimlikTasarimId).ColorFont;">@db.KmlikTasarims.Single(x => x.Id == item.KimlikTasarimId).Etiket1Arka</label>
+                    <label class="row-bottom" style="color:@db.KmlikTasarims.Single(x => x.Id == item.KimlikTasarimId).ColorFont;border-bottom-color:@db.KmlikTasarims.Single(x => x.Id == item.KimlikTasarimId).ColorFont;">: BEKAR</label>
+                </div>
+                <div class="card-row new-size">
+                    <label style="color:@db.KmlikTasarims.Single(x => x.Id == item.KimlikTasarimId).ColorFont;">@db.KmlikTasarims.Single(x => x.Id == item.KimlikTasarimId).Etiket2Arka</label>
+                    <label class="row-bottom" style="color:@db.KmlikTasarims.Single(x => x.Id == item.KimlikTasarimId).ColorFont;border-bottom-color:@db.KmlikTasarims.Single(x => x.Id == item.KimlikTasarimId).ColorFont;">: İSLAM</label>
+                </div>
+                <div class="card-row new-size">
+                    <label style="color:@db.KmlikTasarims.Single(x => x.Id == item.KimlikTasarimId).ColorFont;">@db.KmlikTasarims.Single(x => x.Id == item.KimlikTasarimId).Etiket3Arka</label>
+                    <label class="row-bottom" style="color:@db.KmlikTasarims.Single(x => x.Id == item.KimlikTasarimId).ColorFont;border-bottom-color:@db.KmlikTasarims.Single(x => x.Id == item.KimlikTasarimId).ColorFont;">: AYDIN</label>
+                </div>
+                <div class="card-row new-size">
+                    <label style="color:@db.KmlikTasarims.Single(x => x.Id == item.KimlikTasarimId).ColorFont;">@db.KmlikTasarims.Single(x => x.Id == item.KimlikTasarimId).Etiket4Arka</label>
+                    <label class="row-bottom" style="color:@db.KmlikTasarims.Single(x => x.Id == item.KimlikTasarimId).ColorFont;border-bottom-color:@db.KmlikTasarims.Single(x => x.Id == item.KimlikTasarimId).ColorFont;">: SÖKE</label>
+                </div>
+                <h6 style="color:@db.KmlikTasarims.Single(x => x.Id == item.KimlikTasarimId).ColorFont;">@db.KmlikTasarims.Single(x => x.Id == item.KimlikTasarimId).etiketArkaOrtaBaslik</h6>
+                <div class="card-row new-size">
+                    <label style="color:@db.KmlikTasarims.Single(x => x.Id == item.KimlikTasarimId).ColorFont;">@db.KmlikTasarims.Single(x => x.Id == item.KimlikTasarimId).Etiket5Arka</label>
+                    <label class="row-bottom" style="color:@db.KmlikTasarims.Single(x => x.Id == item.KimlikTasarimId).ColorFont;border-bottom-color:@db.KmlikTasarims.Single(x => x.Id == item.KimlikTasarimId).ColorFont;">: CUMHURİYET</label>
+                </div>
+                <div class="card-row new-size">
+
+                    <label style="color:@db.KmlikTasarims.Single(x => x.Id == item.KimlikTasarimId).ColorFont;">@db.KmlikTasarims.Single(x => x.Id == item.KimlikTasarimId).Etiket6Arka</label>
+                    <label class="row-bottom" style="color:@db.KmlikTasarims.Single(x => x.Id == item.KimlikTasarimId).ColorFont;border-bottom-color:@db.KmlikTasarims.Single(x => x.Id == item.KimlikTasarimId).ColorFont;">: 00001</label>
+                </div>
+                <div class="card-row new-size">
+                    <label style="color:@db.KmlikTasarims.Single(x => x.Id == item.KimlikTasarimId).ColorFont;">@db.KmlikTasarims.Single(x => x.Id == item.KimlikTasarimId).Etiket7Arka</label>
+                    <label class="row-bottom" style="color:@db.KmlikTasarims.Single(x => x.Id == item.KimlikTasarimId).ColorFont;border-bottom-color:@db.KmlikTasarims.Single(x => x.Id == item.KimlikTasarimId).ColorFont;">: 00002</label>
+                </div>
+                <div class="card-row new-size">
+                    <label style="color:@db.KmlikTasarims.Single(x => x.Id == item.KimlikTasarimId).ColorFont;">@db.KmlikTasarims.Single(x => x.Id == item.KimlikTasarimId).Etiket8Arka</label>
+                    <label class="row-bottom" style="color:@db.KmlikTasarims.Single(x => x.Id == item.KimlikTasarimId).ColorFont;border-bottom-color:@db.KmlikTasarims.Single(x => x.Id == item.KimlikTasarimId).ColorFont;">: SÖKE</label>
+                </div>
+                <div class="card-row new-size">
+                    <label style="color:@db.KmlikTasarims.Single(x => x.Id == item.KimlikTasarimId).ColorFont;">@db.KmlikTasarims.Single(x => x.Id == item.KimlikTasarimId).Etiket9Arka</label>
+                    <label class="row-bottom" style="color:@db.KmlikTasarims.Single(x => x.Id == item.KimlikTasarimId).ColorFont;border-bottom-color:@db.KmlikTasarims.Single(x => x.Id == item.KimlikTasarimId).ColorFont;">: YENİLEME</label>
+                </div>
+                <div class="card-row new-size">
+                    <label style="color:@db.KmlikTasarims.Single(x => x.Id == item.KimlikTasarimId).ColorFont;">@db.KmlikTasarims.Single(x => x.Id == item.KimlikTasarimId).Etiket10Arka</label>
+                    <label class="row-bottom" style="color:@db.KmlikTasarims.Single(x => x.Id == item.KimlikTasarimId).ColorFont;border-bottom-color:@db.KmlikTasarims.Single(x => x.Id == item.KimlikTasarimId).ColorFont;">: 007</label>
+                </div>
+                <div class="card-row new-size">
+
+                    <label style="color:@db.KmlikTasarims.Single(x => x.Id == item.KimlikTasarimId).ColorFont;">@db.KmlikTasarims.Single(x => x.Id == item.KimlikTasarimId).Etiket11Arka</label>
+                    <label class="row-bottom" style="color:@db.KmlikTasarims.Single(x => x.Id == item.KimlikTasarimId).ColorFont;border-bottom-color:@db.KmlikTasarims.Single(x => x.Id == item.KimlikTasarimId).ColorFont;">: 17.12.2015</label>
+                </div>
+                <div class="card-row new-size">
+
+                    <label style="color:@db.KmlikTasarims.Single(x => x.Id == item.KimlikTasarimId).ColorFont;">@db.KmlikTasarims.Single(x => x.Id == item.KimlikTasarimId).Etiket12Arka</label>
+                    <label class="row-bottom" style="color:@db.KmlikTasarims.Single(x => x.Id == item.KimlikTasarimId).ColorFont;border-bottom-color:@db.KmlikTasarims.Single(x => x.Id == item.KimlikTasarimId).ColorFont;">: 17.12.2015</label>
+                </div>
+            </div>
+
+
+        </div>
+
+        <!-- SECOND SIDE -->
+
+
+
+
+
+    </div>
+    
+    
+    //counter++;
+}

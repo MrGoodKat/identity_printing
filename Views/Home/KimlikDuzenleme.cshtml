@@ -1,0 +1,368 @@
+﻿@model kimlik.Models.KisiBilgileri
+@using kimlik.Models
+@{
+    ViewBag.Title = "KimlikDuzenleme";
+    KimlikDbDataContext db = new KimlikDbDataContext();
+
+
+    var result = db.KmlikTasarims.Single(x => x.Id == Model.KimlikTasarimId);
+
+    string dontShow = "";
+
+
+    try
+    {
+        if (!String.IsNullOrEmpty(Session["UserId"].ToString()))
+        {
+    <h3 class="contact_section_title">@result.KimlikBaslik</h3>
+    <div class="contactForm row m0">
+        <form class="row contact_form" action="/Home/KimlikDuzenleme/@Model.Id" enctype="multipart/form-data" method="post">
+
+            <div class="row m0">
+                <div class="content-left">
+
+                    <div class="col-sm-12">
+                        @if (String.IsNullOrEmpty(Model.TCNo))
+                        {
+                            dontShow = "display:none;";
+                        }
+                        else
+                        {
+                            dontShow = "";
+                        }
+                        <div class="input-group" style="@dontShow">
+                            <label for="contact_fname">@result.Etiket1</label>
+
+                            <input type="text" id="TCNo" name="TCNo" class="form-control" value="@Model.TCNo" />
+                            @*@Html.ValidationMessageFor(model => model.Soyadi)*@
+                        </div>
+                        @if (String.IsNullOrEmpty(Model.Soyadi))
+                        {
+                            dontShow = "display:none;";
+                        }
+                        else
+                        {
+                            dontShow = "";
+                        }
+                        <div class="input-group" style="@dontShow">
+                            <label for="contact_femail">@result.Etiket2</label>
+
+                            <input type="text" id="Soyadi" name="Soyadi" class="form-control" value="@Model.Soyadi" />
+                        </div>
+                        @if (String.IsNullOrEmpty(Model.Adi))
+                        {
+                            dontShow = "display:none;";
+                        }
+                        else
+                        {
+                            dontShow = "";
+                        }
+                        <div class="input-group" style="@dontShow">
+                            <label for="contact_lname">@result.Etiket3</label>
+
+                            <input type="text" id="Adi" name="Adi" class="form-control" value="@Model.Adi"  />
+                        </div>
+                        @if (String.IsNullOrEmpty(Model.BabaAdi))
+                        {
+                            dontShow = "display:none;";
+                        }
+                        else
+                        {
+                            dontShow = "";
+                        }
+                        <div class="input-group" style="@dontShow">
+                            <label for="contact_fphone">@result.Etiket4</label>
+
+                            <input type="text" id="BabaAdi" name="BabaAdi" class="form-control" value="@Model.BabaAdi"  />
+                        </div>
+                        @if (String.IsNullOrEmpty(Model.AnaAdi))
+                        {
+                            dontShow = "display:none;";
+                        }
+                        else
+                        {
+                            dontShow = "";
+                        }
+                        <div class="input-group" style="@dontShow">
+                            <label for="contact_lname">@result.Etiket5</label>
+
+                            <input type="text" id="AnaAdi" name="AnaAdi" class="form-control" value="@Model.AnaAdi"  />
+                        </div>
+                        @if (String.IsNullOrEmpty(Model.DogumYeri))
+                        {
+                            dontShow = "display:none;";
+                        }
+                        else
+                        {
+                            dontShow = "";
+                        }
+                        <div class="input-group" style="@dontShow">
+                            <label for="contact_fphone">@result.Etiket6</label>
+
+                            <input type="text" id="DogumYeri" name="DogumYeri" class="form-control" value="@Model.DogumYeri" />
+                        </div>
+                        @if (String.IsNullOrEmpty(Model.DogumTarih))
+                        {
+                            dontShow = "display:none;";
+                        }
+                        else
+                        {
+                            dontShow = "";
+                        }
+                        <div class="input-group" style="@dontShow">
+                            <label for="contact_lname">@result.Etiket7</label>
+
+                            <input type="text" id="DogumTarih" name="DogumTarih" class="form-control" value="@Model.DogumTarih" />
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="content-right">
+                    <!-- kimlik resmi -->
+                    <div class="col-sm-12">
+                        <h5 class="contact_section_title">KİMLİK PROFİL RESMİ</h5>
+                        <div class="profile-image-container">
+                            <div class="row m0 image">
+                                <img class="img-responsive" alt="" title="Örnek Resim" src="/Uploads/Images/Large/@Model.ImagePath" />
+                            </div>
+                            <div class="row m0 title_row more-top">
+                                <input type="file" id="ImagePath" name="ImagePath" />
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+
+
+            </div>
+            <div class="row m0">
+                <div class="col-sm-12">
+                    <div class="input-group">
+                        <h4 class="contact_section_title second-side-of-title">@result.KimlikBaslikArka</h4>
+                    </div>
+                </div>
+                @if (String.IsNullOrEmpty(Model.MedeniHali))
+                {
+                    dontShow = "display:none;";
+                }
+                else
+                {
+                    dontShow = "";
+                }
+                <div class="col-sm-3" style="@dontShow">
+                    <div class="input-group">
+                        <label for="contact_lname">@result.Etiket1Arka</label>
+
+                        <input type="text" name="MedeniHali" id="MedeniHali" class="form-control"  value="@Model.MedeniHali" />
+                    </div>
+
+                </div>
+                @if (String.IsNullOrEmpty(Model.Din))
+                {
+                    dontShow = "display:none;";
+                }
+                else
+                {
+                    dontShow = "";
+                }
+                <div class="col-sm-3" style="@dontShow">
+                    <div class="input-group">
+                        <label for="contact_lname">@result.Etiket2Arka</label>
+
+                        <input type="text" name="Din" id="Din" class="form-control" value="@Model.Din" />
+                    </div>
+                </div>
+                @if (String.IsNullOrEmpty(Model.Il))
+                {
+                    dontShow = "display:none;";
+                }
+                else
+                {
+                    dontShow = "";
+                }
+                <div class="col-sm-3" style="@dontShow">
+                    <div class="input-group">
+                        <label for="contact_lname">@result.Etiket3Arka</label>
+
+                        <input type="text" name="Il" id="Il" class="form-control" value="@Model.Il" />
+                    </div>
+
+                </div>
+                @if (String.IsNullOrEmpty(Model.Ilce))
+                {
+                    dontShow = "display:none;";
+                }
+                else
+                {
+                    dontShow = "";
+                }
+                <div class="col-sm-3" style="@dontShow">
+                    <div class="input-group">
+                        <label for="contact_lname">@result.Etiket4Arka</label>
+
+                        <input type="text" name="Ilce" id="Ilce" class="form-control" value="@Model.Ilce" />
+                    </div>
+                </div>
+
+                <div class="col-sm-12">
+                    <div class="input-group">
+                        <h4 class="contact_section_title second-side-of-title">@result.etiketArkaOrtaBaslik</h4>
+                    </div>
+                </div>
+                @if (String.IsNullOrEmpty(Model.Mahalle))
+                {
+                    dontShow = "display:none;";
+                }
+                else
+                {
+                    dontShow = "";
+                }
+                <div class="col-sm-4" style="@dontShow">
+                    <div class="input-group">
+                        <label for="contact_lname">@result.Etiket5Arka</label>
+
+                        <input type="text" name="Mahalle" id="Mahalle" class="form-control" value="@Model.Mahalle" />
+                    </div>
+                </div>
+                @*</div>
+            <div class="row m0">*@
+                @if (String.IsNullOrEmpty(Model.AileSiraNo))
+                {
+                    dontShow = "display:none;";
+                }
+                else
+                {
+                    dontShow = "";
+                }
+                <div class="col-sm-4" style="@dontShow">
+                    <div class="input-group">
+                        <label for="contact_lname">@result.Etiket6Arka</label>
+
+                        <input type="text" name="CiltNo" id="CiltNo" class="form-control" value="@Model.CiltNo" />
+                    </div>
+                </div>
+                @if (String.IsNullOrEmpty(Model.AileSiraNo))
+                {
+                    dontShow = "display:none;";
+                }
+                else
+                {
+                    dontShow = "";
+                }
+                <div class="col-sm-4" style="@dontShow">
+                    <div class="input-group">
+                        <label for="contact_lname">@result.Etiket7Arka</label>
+
+                        <input type="text" name="AileSiraNo" id="AileSiraNo" class="form-control" value="@Model.AileSiraNo" />
+                    </div>
+                </div>
+                @if (String.IsNullOrEmpty(Model.SiraNo))
+                {
+                    dontShow = "display:none;";
+                }
+                else
+                {
+                    dontShow = "";
+                }
+                <div class="col-sm-4" style="@dontShow">
+                    <div class="input-group">
+                        <label for="contact_lname">@result.Etiket8Arka</label>
+
+                        <input type="text" name="SiraNo" id="SiraNo" class="form-control" value="@Model.SiraNo" />
+                    </div>
+                </div>
+                @*</div>
+            <div class="row m0">*@
+                @if (String.IsNullOrEmpty(Model.VerildigiYer))
+                {
+                    dontShow = "display:none;";
+                }
+                else
+                {
+                    dontShow = "";
+                }
+                <div class="col-sm-4" style="@dontShow">
+                    <div class="input-group">
+                        <label for="contact_lname">@result.Etiket9Arka</label>
+
+                        <input type="text" name="VerildigiYer" id="VerildigiYer" class="form-control" value="@Model.VerildigiYer" />
+                    </div>
+                </div>
+                @if (String.IsNullOrEmpty(Model.VerilisNedeni))
+                {
+                    dontShow = "display:none;";
+                }
+                else
+                {
+                    dontShow = "";
+                }
+                <div class="col-sm-4" style="@dontShow">
+                    <div class="input-group">
+                        <label for="contact_lname">@result.Etiket10Arka</label>
+
+                        <input type="text" name="VerilisNedeni" id="VerilisNedeni" class="form-control" value="@Model.VerilisNedeni" />
+                    </div>
+                </div>
+
+            </div>
+            <div class="row m0">
+                @if (String.IsNullOrEmpty(Model.KayitNo))
+                {
+                    dontShow = "display:none;";
+                }
+                else
+                {
+                    dontShow = "";
+                }
+                <div class="col-sm-4" style="@dontShow">
+                    <div class="input-group">
+                        <label for="contact_lname">@result.Etiket11Arka</label>
+
+                        <input type="text" name="KayitNo" id="KayitNo" class="form-control" value="@Model.KayitNo" />
+                    </div>
+                </div>
+                @if (String.IsNullOrEmpty(Model.VerilisTarihi))
+                {
+                    dontShow = "display:none;";
+                }
+                else
+                {
+                    dontShow = "";
+                }
+                <div class="col-sm-4" style="@dontShow">
+                    <div class="input-group">
+                        <label for="contact_lname">@result.Etiket12Arka</label>
+
+                        <input type="text" name="VerilisTarihi" id="VerilisTarihi" class="form-control" value="@Model.VerilisTarihi" />
+                    </div>
+                </div>
+
+                @*<div class="col-sm-4">
+                    <div class="input-group">
+                        <label for="contact_lname">@result.Etiket13Arka</label>
+                        <input type="text" name="KanGrubu" id="KanGrubu" class="form-control" value="@Model.KanGrubu" />
+                    </div>
+                </div>*@
+
+            </div>
+            <div class="row m0">
+                <div class="col-sm-12">
+                    <input type="submit" value="KAYDET" class="submit_btn pull-right">
+                </div>
+            </div>
+        </form>
+
+    </div>
+        }
+        else
+        {
+            Response.Redirect("/Home/Login");
+        }
+    }
+    catch (Exception)
+    {
+        Response.Redirect("/Home/Login");
+    }
+}
